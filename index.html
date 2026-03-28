@@ -1,16 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lokesh Jaiswal | Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio website showcasing academics, cybersecurity experience, skills, certifications, hobbies, and important profile links."
+    />
+    <style>
+      :root {
+        --bg: #0b1220;
+        --bg-soft: #121b2e;
+        --card: #18233b;
+        --text: #ebf0ff;
+        --muted: #b5c2e6;
+        --accent: #5eead4;
+        --accent-2: #60a5fa;
+        --border: #25365b;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      }
 
+      * {
+        box-sizing: border-box;
+      }
 
+      html {
+        scroll-behavior: smooth;
+      }
 
+      body {
+        margin: 0;
+        font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+        background: radial-gradient(circle at top right, #162445 0%, var(--bg) 45%);
+        color: var(--text);
+        line-height: 1.6;
+      }
 
+      a {
+        color: inherit;
+      }
 
+      .container {
+        width: min(1100px, 92%);
+        margin: 0 auto;
+      }
 
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+        background: rgba(11, 18, 32, 0.88);
+        border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+      }
 
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.9rem 0;
+      }
 
+      .brand {
+        font-size: 1.05rem;
+        font-weight: 700;
+        text-decoration: none;
+        letter-spacing: 0.3px;
+      }
 
+      .brand span {
+        color: var(--accent);
+      }
 
+      .nav-links {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        margin: 0;
+        padding: 0;
+      }
 
+      .nav-links a {
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 0.92rem;
+        font-weight: 600;
+        padding: 0.45rem 0.65rem;
+        border-radius: 0.5rem;
+        transition: 0.2s ease;
+      }
 
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        background: rgba(94, 234, 212, 0.12);
+        color: var(--text);
+      }
 
+      .hero {
+        padding: 5rem 0 2.5rem;
+      }
 
+      .hero-grid {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: 1.4fr 1fr;
+        align-items: center;
+      }
 
+      .tag {
+        display: inline-block;
+        background: rgba(94, 234, 212, 0.14);
+        color: var(--accent);
+        border: 1px solid rgba(94, 234, 212, 0.25);
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+      }
 
+      h1,
+      h2,
+      h3 {
+        line-height: 1.2;
+        margin: 0 0 0.8rem;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-top: 1rem;
+      }
+
+      h2 {
+        font-size: clamp(1.4rem, 3vw, 2rem);
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .hero p {
+        max-width: 60ch;
+        margin-bottom: 1.5rem;
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+
+      .btn {
+        text-decoration: none;
+        border-radius: 0.7rem;
+        padding: 0.7rem 1rem;
+        font-weight: 700;
+        font-size: 0.92rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        transition: 0.2s ease;
+        border: 1px solid transparent;
+      }
+
+      .btn-primary {
+        background: linear-gradient(120deg, var(--accent), var(--accent-2));
+        color: #00131a;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow);
+      }
+
+      .btn-outline {
+        border-color: var(--border);
+        color: var(--text);
+        background: rgba(148, 163, 184, 0.06);
+      }
+
+      .btn-outline:hover {
+        background: rgba(148, 163, 184, 0.13);
+      }
+
+      .hero-card {
+        background: linear-gradient(145deg, var(--card), #12203a);
+        border: 1px solid var(--border);
+        padding: 1.4rem;
+        border-radius: 1rem;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-card h3 {
+        margin-bottom: 0.4rem;
+      }
+
+      .hero-card ul {
+        margin: 1rem 0 0;
+        padding-left: 1.1rem;
+        color: var(--muted);
+      }
+
+      .section {
+        padding: 2.2rem 0;
+      }
+
+      .section-title {
+        margin-bottom: 1rem;
+      }
+
+      .section-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .card {
+        background: rgba(24, 35, 59, 0.85);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.15rem;
+      }
+
+      .card h3 {
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .timeline {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .timeline li {
+        background: rgba(96, 165, 250, 0.08);
+        border: 1px solid rgba(96, 165, 250, 0.18);
+        border-radius: 0.8rem;
+        padding: 0.8rem;
+      }
+
+      .timeline strong {
+        display: block;
+        margin-bottom: 0.25rem;
+        color: var(--text);
+      }
+
+      .chip-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+      }
+
+      .chip {
+        background: rgba(94, 234, 212, 0.1);
+        border: 1px solid rgba(94, 234, 212, 0.2);
+        border-radius: 999px;
+        padding: 0.4rem 0.7rem;
+        color: #dffef8;
+        font-size: 0.87rem;
+      }
+
+      .link-grid {
+        display: grid;
+        gap: 0.8rem;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      .profile-link {
+        display: block;
+        text-decoration: none;
+        border: 1px solid var(--border);
+        background: rgba(19, 30, 51, 0.9);
+        border-radius: 0.8rem;
+        padding: 0.85rem;
+      }
+
+      .profile-link small {
+        color: var(--muted);
+      }
+
+      .profile-link:hover {
+        border-color: var(--accent);
+      }
+
+      .footer {
+        margin-top: 3rem;
+        padding: 1.5rem 0 2rem;
+        border-top: 1px solid rgba(148, 163, 184, 0.2);
+      }
+
+      .footer p {
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 850px) {
+        .hero-grid,
+        .section-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="container nav" aria-label="Primary navigation">
+        <a class="brand" href="#top">Lokesh<span>Jaiswal</span></a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#academics">Academics</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#certificates">Certificates</a></li>
+          <li><a href="#hobbies">Hobbies</a></li>
+          <li><a href="#profiles">Profiles</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="top" class="container">
+      <section class="hero" id="about">
+        <div class="hero-grid">
+          <div>
+            <span class="tag">Cybersecurity Portfolio</span>
+            <h1>Hello, I am Lokesh Jaiswal.</h1>
+            <p>
+              I am a cybersecurity learner focused on red teaming, ethical hacking, and secure software
+              development. This page gives a quick and simple overview of my profile, experience,
+              academics, skills, certificates, and learning platforms.
+            </p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#profiles">View Profile Links</a>
+              <a class="btn btn-outline" href="mailto:lokesh.kumar@example.com">Contact Me</a>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="Quick highlights">
+            <h3>Quick Highlights</h3>
+            <p>Current focus areas:</p>
+            <ul>
+              <li>Web application security testing</li>
+              <li>CTF challenges and practical labs</li>
+              <li>Linux, networking, and scripting for security automation</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="experience">
+        <h2 class="section-title">Experience in Current Field</h2>
+        <div class="section-grid">
+          <article class="card">
+            <h3>Cybersecurity Learning Journey</h3>
+            <ul class="timeline">
+              <li>
+                <strong>Hands-on Labs</strong>
+                Practicing vulnerability assessment and exploitation in controlled environments.
+              </li>
+              <li>
+                <strong>Capture The Flag (CTF)</strong>
+                Solving web, reversing, cryptography, and forensics challenges to improve analysis skills.
+              </li>
+              <li>
+                <strong>Secure Coding Practice</strong>
+                Reviewing common vulnerabilities like SQLi, XSS, CSRF, and broken authentication.
+              </li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>What I Bring</h3>
+            <p>
+              Strong willingness to learn, disciplined problem-solving, and practical security mindset.
+              I enjoy breaking down complex security problems into simple actionable steps.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="academics">
+        <h2 class="section-title">Academics</h2>
+        <div class="card">
+          <ul class="timeline">
+            <li>
+              <strong>Bachelor's / Degree Program (Update with your exact course)</strong>
+              Institution Name • Year Range
+            </li>
+            <li>
+              <strong>Relevant Coursework</strong>
+              Computer Networks, Operating Systems, Information Security, Data Structures, Programming.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="section-grid">
+          <article class="card">
+            <h3>Technical Skills</h3>
+            <ul class="chip-list">
+              <li class="chip">Linux</li>
+              <li class="chip">Networking Fundamentals</li>
+              <li class="chip">Web Security Basics</li>
+              <li class="chip">Python</li>
+              <li class="chip">Bash Scripting</li>
+              <li class="chip">Git & GitHub</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Soft Skills</h3>
+            <ul class="chip-list">
+              <li class="chip">Communication</li>
+              <li class="chip">Team Collaboration</li>
+              <li class="chip">Critical Thinking</li>
+              <li class="chip">Continuous Learning</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="certificates">
+        <h2 class="section-title">Certificates</h2>
+        <div class="card">
+          <p>
+            Add your certificates below (for example: Google Cybersecurity, CEH modules, TryHackMe paths,
+            networking courses, etc.).
+          </p>
+          <ul class="timeline" style="margin-top: 0.9rem">
+            <li><strong>Certificate Name</strong> Issuing Organization • Year</li>
+            <li><strong>Certificate Name</strong> Issuing Organization • Year</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="hobbies">
+        <h2 class="section-title">Hobbies</h2>
+        <div class="card">
+          <ul class="chip-list">
+            <li class="chip">CTF Practice</li>
+            <li class="chip">Reading Security Blogs</li>
+            <li class="chip">Problem Solving</li>
+            <li class="chip">Open Source Learning</li>
+            <li class="chip">Tech Communities</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="profiles">
+        <h2 class="section-title">Important Profile Links</h2>
+        <div class="link-grid">
+          <a class="profile-link" href="https://www.hackthebox.com/" target="_blank" rel="noreferrer noopener">
+            <strong>Hack The Box</strong><br />
+            <small>Update with your profile URL</small>
+          </a>
+          <a class="profile-link" href="https://tryhackme.com/" target="_blank" rel="noreferrer noopener">
+            <strong>TryHackMe</strong><br />
+            <small>Update with your profile URL</small>
+          </a>
+          <a class="profile-link" href="https://codeforces.com/" target="_blank" rel="noreferrer noopener">
+            <strong>Codeforces</strong><br />
+            <small>Update with your profile URL</small>
+          </a>
+          <a class="profile-link" href="https://www.hackerrank.com/" target="_blank" rel="noreferrer noopener">
+            <strong>HackerRank</strong><br />
+            <small>Update with your profile URL</small>
+          </a>
+          <a class="profile-link" href="https://github.com/" target="_blank" rel="noreferrer noopener">
+            <strong>GitHub</strong><br />
+            <small>Update with your profile URL</small>
+          </a>
+          <a class="profile-link" href="https://www.linkedin.com/" target="_blank" rel="noreferrer noopener">
+            <strong>LinkedIn</strong><br />
+            <small>Update with your profile URL</small>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© <span id="year"></span> Lokesh Jaiswal • Built for GitHub Pages.</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
