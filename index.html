@@ -6,19 +6,27 @@
     <title>Lokesh Jaiswal | Portfolio</title>
     <meta
       name="description"
-      content="Portfolio website showcasing academics, cybersecurity experience, skills, certifications, hobbies, and important profile links."
+      content="Portfolio of Lokesh Jaiswal, an aspiring software developer focused on backend development, cybersecurity basics, frontend presentation, APIs, and practical software engineering."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
     />
     <style>
       :root {
-        --bg: #0b1220;
-        --bg-soft: #121b2e;
-        --card: #18233b;
-        --text: #ebf0ff;
-        --muted: #b5c2e6;
-        --accent: #5eead4;
-        --accent-2: #60a5fa;
-        --border: #25365b;
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        --bg: #f5f5f7;
+        --surface: #ffffff;
+        --surface-2: #fbfbfd;
+        --text: #1d1d1f;
+        --muted: #6e6e73;
+        --line: #d2d2d7;
+        --accent: #0071e3;
+        --accent-soft: #e8f2ff;
+        --warning: #8a5d00;
+        --shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+        --radius: 28px;
       }
 
       * {
@@ -31,28 +39,47 @@
 
       body {
         margin: 0;
-        font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
-        background: radial-gradient(circle at top right, #162445 0%, var(--bg) 45%);
+        background: var(--bg);
         color: var(--text);
+        font-family: "Inter", sans-serif;
         line-height: 1.6;
       }
 
       a {
         color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
       }
 
       .container {
-        width: min(1100px, 92%);
+        width: min(1120px, calc(100% - 32px));
         margin: 0 auto;
+      }
+
+      .ticker {
+        display: none;
+        background: #fff7e6;
+        color: var(--warning);
+        font-size: 0.76rem;
+        text-align: center;
+        padding: 0.55rem 1rem;
+        border-bottom: 1px solid #f0d79d;
+      }
+
+      .ticker.visible {
+        display: block;
       }
 
       .site-header {
         position: sticky;
         top: 0;
-        z-index: 100;
-        backdrop-filter: blur(10px);
-        background: rgba(11, 18, 32, 0.88);
-        border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+        z-index: 20;
+        backdrop-filter: saturate(180%) blur(18px);
+        background: rgba(245, 245, 247, 0.78);
+        border-bottom: 1px solid rgba(210, 210, 215, 0.7);
       }
 
       .nav {
@@ -60,14 +87,12 @@
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
-        padding: 0.9rem 0;
+        min-height: 68px;
       }
 
       .brand {
-        font-size: 1.05rem;
         font-weight: 700;
-        text-decoration: none;
-        letter-spacing: 0.3px;
+        letter-spacing: -0.03em;
       }
 
       .brand span {
@@ -75,488 +100,571 @@
       }
 
       .nav-links {
-        list-style: none;
         display: flex;
         flex-wrap: wrap;
-        gap: 0.65rem;
+        gap: 0.9rem;
+        list-style: none;
         margin: 0;
         padding: 0;
       }
 
       .nav-links a {
-        text-decoration: none;
+        font-size: 0.94rem;
         color: var(--muted);
-        font-size: 0.92rem;
-        font-weight: 600;
-        padding: 0.45rem 0.65rem;
-        border-radius: 0.5rem;
-        transition: 0.2s ease;
       }
 
-      .nav-links a:hover,
-      .nav-links a:focus-visible {
-        background: rgba(94, 234, 212, 0.12);
+      .nav-links a:hover {
         color: var(--text);
       }
 
       .hero {
-        padding: 5rem 0 2.5rem;
+        padding: 5.8rem 0 3rem;
+        text-align: center;
       }
 
-      .hero-grid {
-        display: grid;
-        gap: 2rem;
-        grid-template-columns: 1.4fr 1fr;
-        align-items: center;
-      }
-
-      .tag {
+      .eyebrow {
         display: inline-block;
-        background: rgba(94, 234, 212, 0.14);
-        color: var(--accent);
-        border: 1px solid rgba(94, 234, 212, 0.25);
-        padding: 0.35rem 0.7rem;
+        padding: 0.5rem 0.85rem;
+        background: var(--surface);
+        border: 1px solid var(--line);
         border-radius: 999px;
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.4px;
-        text-transform: uppercase;
+        color: var(--accent);
+        font-size: 0.82rem;
+        font-weight: 600;
       }
 
       h1,
       h2,
       h3 {
-        line-height: 1.2;
-        margin: 0 0 0.8rem;
+        margin: 0;
+        line-height: 1.08;
+        letter-spacing: -0.04em;
       }
 
       h1 {
-        font-size: clamp(2rem, 4vw, 3rem);
         margin-top: 1rem;
-      }
-
-      h2 {
-        font-size: clamp(1.4rem, 3vw, 2rem);
-      }
-
-      p {
-        margin: 0;
-        color: var(--muted);
+        font-size: clamp(2.7rem, 7vw, 5.6rem);
+        font-weight: 800;
       }
 
       .hero p {
-        max-width: 60ch;
-        margin-bottom: 1.5rem;
+        width: min(760px, 100%);
+        margin: 1.2rem auto 0;
+        font-size: clamp(1.05rem, 2vw, 1.35rem);
+        color: var(--muted);
       }
 
       .cta-row {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.8rem;
+        justify-content: center;
+        gap: 0.9rem;
+        margin-top: 1.8rem;
       }
 
       .btn {
-        text-decoration: none;
-        border-radius: 0.7rem;
-        padding: 0.7rem 1rem;
-        font-weight: 700;
-        font-size: 0.92rem;
         display: inline-flex;
         align-items: center;
-        gap: 0.4rem;
-        transition: 0.2s ease;
-        border: 1px solid transparent;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 1.15rem;
+        border-radius: 999px;
+        font-weight: 600;
       }
 
       .btn-primary {
-        background: linear-gradient(120deg, var(--accent), var(--accent-2));
-        color: #00131a;
+        background: var(--accent);
+        color: #fff;
       }
 
-      .btn-primary:hover {
-        transform: translateY(-1px);
-        box-shadow: var(--shadow);
-      }
-
-      .btn-outline {
-        border-color: var(--border);
+      .btn-secondary {
+        background: var(--surface);
+        border: 1px solid var(--line);
         color: var(--text);
-        background: rgba(148, 163, 184, 0.06);
       }
 
-      .btn-outline:hover {
-        background: rgba(148, 163, 184, 0.13);
-      }
-
-      .hero-card {
-        background: linear-gradient(145deg, var(--card), #12203a);
-        border: 1px solid var(--border);
-        padding: 1.4rem;
-        border-radius: 1rem;
+      .hero-panel {
+        margin-top: 2.5rem;
+        padding: 2rem;
+        border-radius: 32px;
+        background: linear-gradient(180deg, #fff, #f7f8fa);
+        border: 1px solid rgba(210, 210, 215, 0.8);
         box-shadow: var(--shadow);
       }
 
-      .hero-card h3 {
-        margin-bottom: 0.4rem;
+      .hero-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
-      .hero-card ul {
-        margin: 1rem 0 0;
-        padding-left: 1.1rem;
+      .hero-stat {
+        padding: 1.35rem;
+        border-radius: 22px;
+        background: var(--surface);
+        border: 1px solid rgba(210, 210, 215, 0.65);
+        text-align: left;
+      }
+
+      .hero-stat span {
+        display: block;
+        margin-bottom: 0.45rem;
+        font-size: 0.82rem;
+        font-weight: 600;
         color: var(--muted);
+        letter-spacing: -0.01em;
+      }
+
+      .hero-stat strong {
+        font-size: 1.02rem;
       }
 
       .section {
-        padding: 2.2rem 0;
+        padding: 1.2rem 0 2rem;
       }
 
-      .section-title {
+      .section-head {
         margin-bottom: 1rem;
       }
 
-      .section-grid {
+      .section-head h2 {
+        font-size: clamp(2rem, 4vw, 3.2rem);
+      }
+
+      .section-head p {
+        margin: 0.7rem 0 0;
+        color: var(--muted);
+        max-width: 760px;
+      }
+
+      .grid {
         display: grid;
         gap: 1rem;
+      }
+
+      .grid.two {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .grid.three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
       .card {
-        background: rgba(24, 35, 59, 0.85);
-        border: 1px solid var(--border);
-        border-radius: 1rem;
-        padding: 1.15rem;
+        padding: 1.4rem;
+        border-radius: var(--radius);
+        background: var(--surface);
+        border: 1px solid rgba(210, 210, 215, 0.75);
+        box-shadow: var(--shadow);
+      }
+
+      .card.soft {
+        background: var(--surface-2);
       }
 
       .card h3 {
-        margin-bottom: 0.5rem;
-        font-size: 1.1rem;
+        font-size: 1.4rem;
+        margin-bottom: 0.55rem;
       }
 
-      .timeline {
-        list-style: none;
+      .card p {
         margin: 0;
-        padding: 0;
-        display: grid;
-        gap: 0.8rem;
-      }
-
-      .timeline li {
-        background: rgba(96, 165, 250, 0.08);
-        border: 1px solid rgba(96, 165, 250, 0.18);
-        border-radius: 0.8rem;
-        padding: 0.8rem;
-      }
-
-      .timeline strong {
-        display: block;
-        margin-bottom: 0.25rem;
-        color: var(--text);
-      }
-
-      .chip-list {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.55rem;
-      }
-
-      .chip {
-        background: rgba(94, 234, 212, 0.1);
-        border: 1px solid rgba(94, 234, 212, 0.2);
-        border-radius: 999px;
-        padding: 0.4rem 0.7rem;
-        color: #dffef8;
-        font-size: 0.87rem;
-      }
-
-      .link-grid {
-        display: grid;
-        gap: 0.8rem;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      }
-
-      .profile-link {
-        display: block;
-        text-decoration: none;
-        border: 1px solid var(--border);
-        background: rgba(19, 30, 51, 0.9);
-        border-radius: 0.8rem;
-        padding: 0.85rem;
-      }
-
-      .profile-link small {
         color: var(--muted);
       }
 
-      .profile-link:hover {
-        border-color: var(--accent);
+      .list {
+        list-style: none;
+        margin: 1rem 0 0;
+        padding: 0;
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .list li {
+        color: var(--muted);
+      }
+
+      .list strong {
+        display: block;
+        color: var(--text);
+        margin-bottom: 0.18rem;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        margin-top: 1rem;
+      }
+
+      .chip {
+        padding: 0.56rem 0.8rem;
+        background: #f0f6ff;
+        border: 1px solid #dceafe;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        color: #205da8;
+      }
+
+      .highlight {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .project-box {
+        min-height: 260px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .project-box .placeholder {
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 20px;
+        background: var(--accent-soft);
+        color: #23538a;
+        font-size: 0.94rem;
+      }
+
+      .usage-note {
+        font-size: 0.95rem;
+        color: var(--muted);
       }
 
       .footer {
-        margin-top: 3rem;
-        padding: 1.5rem 0 2rem;
-        border-top: 1px solid rgba(148, 163, 184, 0.2);
+        padding: 2rem 0 3rem;
       }
 
-      .footer p {
-        font-size: 0.9rem;
+      .footer-shell {
+        padding: 1.3rem 1.4rem;
+        border-radius: 24px;
+        background: var(--surface);
+        border: 1px solid rgba(210, 210, 215, 0.75);
+        box-shadow: var(--shadow);
       }
 
-      @media (max-width: 850px) {
+      .footer-shell p {
+        margin: 0.35rem 0;
+        color: var(--muted);
+      }
+
+      @media (max-width: 960px) {
         .hero-grid,
-        .section-grid {
+        .grid.two,
+        .grid.three {
           grid-template-columns: 1fr;
         }
+      }
 
+      @media (max-width: 720px) {
         .nav {
-          flex-direction: column;
           align-items: flex-start;
+          flex-direction: column;
+          padding: 0.85rem 0;
+        }
+
+        .hero {
+          padding-top: 4.3rem;
+        }
+
+        .hero-panel,
+        .card,
+        .footer-shell {
+          border-radius: 22px;
         }
       }
     </style>
   </head>
   <body>
+    <div class="ticker" id="first-visit-ticker">
+      Humor notice: inspiration is welcome, but shipping this exact page with your name swapped in is still detectable.
+    </div>
+
     <header class="site-header">
       <nav class="container nav" aria-label="Primary navigation">
         <a class="brand" href="#top">Lokesh<span>Jaiswal</span></a>
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
           <li><a href="#experience">Experience</a></li>
-          <li><a href="#academics">Academics</a></li>
           <li><a href="#skills">Skills</a></li>
-          <li><a href="#certificates">Certificates</a></li>
-          <li><a href="#hobbies">Hobbies</a></li>
-          <li><a href="#profiles">Profiles</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </header>
 
-    <main id="top" class="container">
-      <section class="hero" id="about">
-        <div class="hero-grid">
-          <div>
-            <span class="tag">ML Engineer • Secure AI Builder</span>
-            <h1>Hello, I am Lokesh Jaiswal.</h1>
-            <p>
-              I build production-ready machine learning systems with a cybersecurity-first mindset. From
-              predictive intelligence in edtech to high-performance backend development, my journey is
-              about turning real-world data into trusted, explainable, and scalable impact.
-            </p>
-            <div class="cta-row">
-              <a class="btn btn-primary" href="#profiles">View Profile Links</a>
-              <a class="btn btn-outline" href="mailto:lokesh.kumar@example.com">Contact Me</a>
-            </div>
+    <main id="top">
+      <section class="hero">
+        <div class="container">
+          <span class="eyebrow">Aspiring Software Developer</span>
+          <h1>Simple work. Clear thinking. Practical building.</h1>
+          <p>
+            Motivated and self-driven aspiring software developer with hands-on exposure to
+            Agile development methodologies and the Prototype SDLC model. Strong interest in
+            <span class="highlight">backend development</span>,
+            <span class="highlight">cybersecurity basics</span>,
+            <span class="highlight">frontend presentation</span>, and
+            <span class="highlight">data-related domains</span>.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#projects">View My Work</a>
+            <a class="btn btn-secondary" href="#contact">Contact</a>
           </div>
 
-          <aside class="hero-card" aria-label="Quick highlights">
-            <h3>Quick Highlights</h3>
-            <p>Current focus areas:</p>
-            <ul>
-              <li>LLM-ready data pipelines and MLOps workflows</li>
-              <li>Responsible AI, model monitoring, and explainability</li>
-              <li>Secure-by-design APIs, DevSecOps, and threat-aware engineering</li>
-            </ul>
-          </aside>
+          <div class="hero-panel">
+            <div class="hero-grid">
+              <div class="hero-stat">
+                <span>Main Direction</span>
+                <strong>Backend development, APIs, and practical software engineering</strong>
+              </div>
+              <div class="hero-stat">
+                <span>Learning Track</span>
+                <strong>Cybersecurity basics, networking practice, and secure thinking</strong>
+              </div>
+              <div class="hero-stat">
+                <span>Presentation Skill</span>
+                <strong>Frontend UI structure using HTML, CSS, and JavaScript</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container">
+          <div class="section-head">
+            <h2>About</h2>
+            <p>
+              I learn by building. My approach is based on practical experimentation,
+              problem-solving, and project-based workflows rather than passive theory. I prefer
+              simple systems, clear structure, and work that shows visible progress.
+            </p>
+          </div>
+          <div class="grid two">
+            <article class="card">
+              <h3>What I Focus On</h3>
+              <ul class="list">
+                <li><strong>Backend and APIs</strong>Learning core API concepts, REST communication, FastAPI, and server-side logic.</li>
+                <li><strong>Frontend presentation</strong>Building clean interfaces that present projects and technical work clearly.</li>
+                <li><strong>Cybersecurity basics</strong>Practicing reconnaissance, enumeration, and security-aware engineering habits.</li>
+              </ul>
+            </article>
+            <article class="card soft">
+              <h3>Working Style</h3>
+              <ul class="list">
+                <li><strong>Agile mindset</strong>Iterative development, feedback loops, and improving work in steps.</li>
+                <li><strong>Prototype-first thinking</strong>Building working versions early before refining into complete solutions.</li>
+                <li><strong>Practical learning</strong>Using tools, debugging, and hands-on workflows to understand systems deeply.</li>
+              </ul>
+            </article>
+          </div>
         </div>
       </section>
 
       <section class="section" id="experience">
-        <h2 class="section-title">Work Experience</h2>
-        <div class="section-grid">
-          <article class="card">
-            <h3>ML Engineer • Sutram Solutions, Hyderabad</h3>
-            <p style="margin-bottom: 0.75rem">March 2024 - December 2025</p>
-            <ul class="timeline">
-              <li>
-                <strong>Built Intelligent Learning Systems</strong>
-                Designed and trained RNN-based predictive models for LMS workflows, improving course
-                suitability prediction accuracy by <strong>85%</strong>.
-              </li>
-              <li>
-                <strong>Created Explainable AI Pipelines</strong>
-                Led feature engineering and end-to-end preprocessing pipelines to improve model quality,
-                interpretability, and reliable production performance.
-              </li>
-              <li>
-                <strong>Embedded Insights into Product Decisions</strong>
-                Partnered with product teams to translate ML outputs into actionable recommendations for
-                teachers and administrators, enabling data-driven learning paths.
-              </li>
-              <li>
-                <strong>Applied Security-First ML Thinking</strong>
-                Promoted secure data handling, model integrity checks, and robust API integration patterns
-                aligned with modern <em>AI security</em> and <em>trustworthy AI</em> practices.
-              </li>
-            </ul>
-          </article>
-          <article class="card">
-            <h3>Associate Software Developer • Octascale Technologies, Allahabad</h3>
-            <p style="margin-bottom: 0.75rem">July 2023 - February 2024</p>
-            <ul class="timeline">
-              <li>
-                <strong>Scaled a Rails Logistics Platform</strong>
-                Built and optimized core dashboard features, improving frontend performance by
-                <strong>30%</strong>.
-              </li>
-              <li>
-                <strong>Boosted API Throughput</strong>
-                Improved Rails API response time by <strong>25%</strong> through query optimization and
-                controller refactoring.
-              </li>
-              <li>
-                <strong>Automated Quality at Sprint Speed</strong>
-                Implemented integration-focused <code>rails test</code> suites that reduced repeated manual
-                QA effort and improved release confidence.
-              </li>
-              <li>
-                <strong>Built with a DevSecOps Mindset</strong>
-                Collaborated across frontend and QA teams to ship stable releases with secure coding
-                hygiene, observability awareness, and production reliability.
-              </li>
-            </ul>
-          </article>
-        </div>
-        <div class="card" style="margin-top: 1rem">
-          <h3>Career Story</h3>
-          <p>
-            My path started with building performant software and evolved into designing AI systems that are
-            not only accurate, but also resilient and secure. Today, I combine ML engineering, backend
-            development, and cybersecurity awareness to build products that teams can trust at scale.
-          </p>
-        </div>
-      </section>
-
-      <section class="section" id="academics">
-        <h2 class="section-title">Education</h2>
-        <div class="card">
-          <ul class="timeline">
-            <li>
-              <strong>Bachelor of Technology (Information Technology)</strong>
-              United College of Engineering and Research, Prayagraj, India • 2019 - 2023
-            </li>
-            <li>
-              <strong>Relevant Foundation</strong>
-              Data structures, software engineering, networking, databases, and applied security-oriented
-              computing fundamentals.
-            </li>
-          </ul>
+        <div class="container">
+          <div class="section-head">
+            <h2>Experience</h2>
+            <p>Main work and hands-on learning across software development, backend systems, and cybersecurity basics.</p>
+          </div>
+          <div class="grid two">
+            <article class="card">
+              <h3>ML Engineer</h3>
+              <p>Sutram Solutions, Hyderabad • March 2024 - December 2025</p>
+              <ul class="list">
+                <li><strong>Predictive systems</strong>Built RNN-driven models and preprocessing pipelines for practical learning workflows.</li>
+                <li><strong>Reliable outputs</strong>Worked on interpretable feature design and better model-backed decision flow.</li>
+                <li><strong>Security-aware engineering</strong>Treated data handling and model integrity as part of system quality.</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Associate Software Developer</h3>
+              <p>Octascale Technologies, Allahabad • July 2023 - February 2024</p>
+              <ul class="list">
+                <li><strong>Backend improvements</strong>Improved dashboard rendering and API performance in Rails-based workflows.</li>
+                <li><strong>Testing mindset</strong>Added integration-oriented testing to stabilize releases and reduce repeated issues.</li>
+                <li><strong>Delivery discipline</strong>Worked with a DevSecOps mindset around reliability, observability, and release confidence.</li>
+              </ul>
+            </article>
+            <article class="card soft">
+              <h3>Self-Driven Software Development</h3>
+              <p>Personal experience • Agile + Prototype Model</p>
+              <ul class="list">
+                <li><strong>Iterative project building</strong>Worked on personal projects using Agile-style iteration and prototype-first development.</li>
+                <li><strong>Problem-solving workflow</strong>Focused on structured learning through experimentation, debugging, and delivery steps.</li>
+                <li><strong>Backend and API learning</strong>Learned REST concepts, client-server communication, and FastAPI basics.</li>
+              </ul>
+            </article>
+            <article class="card soft">
+              <h3>Cybersecurity and Networking Practice</h3>
+              <p>Beginner-level practical exposure</p>
+              <ul class="list">
+                <li><strong>Reconnaissance basics</strong>Explored tools such as <code>nmap</code>, <code>gobuster</code>, and FTP enumeration.</li>
+                <li><strong>Practical security learning</strong>Practiced basic penetration testing workflows and introductory recon habits.</li>
+                <li><strong>Security perspective</strong>Developed interest in how software systems can be explored, tested, and hardened.</li>
+              </ul>
+            </article>
+          </div>
         </div>
       </section>
 
       <section class="section" id="skills">
-        <h2 class="section-title">Skills</h2>
-        <div class="section-grid">
-          <article class="card">
-            <h3>Technical Skills</h3>
-            <ul class="chip-list">
-              <li class="chip">Python</li>
-              <li class="chip">SQL</li>
-              <li class="chip">Ruby</li>
-              <li class="chip">JavaScript</li>
-              <li class="chip">C</li>
-              <li class="chip">RNN</li>
-              <li class="chip">NLP</li>
-              <li class="chip">Predictive Modeling</li>
-              <li class="chip">Feature Engineering</li>
-              <li class="chip">TensorFlow / Keras</li>
-              <li class="chip">FastAPI</li>
-              <li class="chip">Flask</li>
-              <li class="chip">Ruby on Rails</li>
-              <li class="chip">REST APIs</li>
-              <li class="chip">MySQL</li>
-              <li class="chip">PostgreSQL</li>
-              <li class="chip">MongoDB</li>
-              <li class="chip">AWS</li>
-              <li class="chip">Docker</li>
-              <li class="chip">GitHub Actions</li>
-            </ul>
-          </article>
-          <article class="card">
-            <h3>Core Strengths & Trends</h3>
-            <ul class="chip-list">
-              <li class="chip">MLOps</li>
-              <li class="chip">DevSecOps</li>
-              <li class="chip">Responsible AI</li>
-              <li class="chip">AI Observability</li>
-              <li class="chip">Model Explainability</li>
-              <li class="chip">Data-Centric AI</li>
-              <li class="chip">Scalable Deployment</li>
-              <li class="chip">Agile Collaboration</li>
-              <li class="chip">Secure SDLC</li>
-              <li class="chip">Threat Modeling</li>
-            </ul>
-          </article>
+        <div class="container">
+          <div class="section-head">
+            <h2>Skills and Focus Areas</h2>
+            <p>A balanced profile across backend, frontend, software process, and early cybersecurity practice.</p>
+          </div>
+          <div class="grid two">
+            <article class="card">
+              <h3>Technical Skills</h3>
+              <div class="chips">
+                <span class="chip">Python</span>
+                <span class="chip">FastAPI</span>
+                <span class="chip">Ruby on Rails</span>
+                <span class="chip">APIs</span>
+                <span class="chip">REST</span>
+                <span class="chip">HTML</span>
+                <span class="chip">CSS</span>
+                <span class="chip">JavaScript</span>
+                <span class="chip">DBMS</span>
+                <span class="chip">Computer Networks</span>
+                <span class="chip">Machine Learning</span>
+              </div>
+            </article>
+            <article class="card soft">
+              <h3>Professional Focus</h3>
+              <ul class="list">
+                <li><strong>Backend development</strong>Server-side logic, APIs, and structured application flow.</li>
+                <li><strong>Frontend presentation</strong>Clean portfolio and interface design to present work professionally.</li>
+                <li><strong>Cybersecurity basics</strong>Security tools, networking exploration, and practical recon workflows.</li>
+                <li><strong>Software engineering process</strong>Agile methodology, prototype development, and iterative refinement.</li>
+              </ul>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section class="section" id="certificates">
-        <h2 class="section-title">Certificates</h2>
-        <div class="card">
-          <p>
-            Add your certificates below (for example: Google Cybersecurity, CEH modules, TryHackMe paths,
-            networking courses, etc.).
-          </p>
-          <ul class="timeline" style="margin-top: 0.9rem">
-            <li><strong>Certificate Name</strong> Issuing Organization • Year</li>
-            <li><strong>Certificate Name</strong> Issuing Organization • Year</li>
-          </ul>
+      <section class="section" id="education">
+        <div class="container">
+          <div class="section-head">
+            <h2>Education</h2>
+            <p>Formal academic background aligned with software engineering, backend systems, and computing fundamentals.</p>
+          </div>
+          <div class="grid two">
+            <article class="card">
+              <h3>Bachelor of Technology (B.Tech)</h3>
+              <p>Information Technology • United College of Engineering and Research • 2023</p>
+              <ul class="list">
+                <li><strong>Core study areas</strong>Software Engineering, Backend Development, APIs, DBMS, Algorithms, Computer Networks, and Cybersecurity Basics.</li>
+                <li><strong>Learning track</strong>Data Science and Machine Learning in an active learning phase.</li>
+                <li><strong>Academic highlights</strong>Practical implementation of Agile methodology in projects and hands-on learning with FastAPI, Python, and Nmap.</li>
+              </ul>
+            </article>
+            <article class="card soft">
+              <h3>What This Foundation Supports</h3>
+              <ul class="list">
+                <li><strong>Software structure</strong>Understanding how applications are designed, built, and refined.</li>
+                <li><strong>Backend systems</strong>Working with APIs, data flow, and client-server models.</li>
+                <li><strong>Technical range</strong>Connecting software engineering fundamentals with practical frontend and security learning.</li>
+              </ul>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section class="section" id="hobbies">
-        <h2 class="section-title">Hobbies</h2>
-        <div class="card">
-          <ul class="chip-list">
-            <li class="chip">CTF Practice</li>
-            <li class="chip">Reading Security Blogs</li>
-            <li class="chip">Problem Solving</li>
-            <li class="chip">Open Source Learning</li>
-            <li class="chip">Tech Communities</li>
-          </ul>
+      <section class="section" id="projects">
+        <div class="container">
+          <div class="section-head">
+            <h2>Projects</h2>
+            <p>Current direction of work. This section is ready for real project entries as you add them.</p>
+          </div>
+          <div class="grid three">
+            <article class="card project-box">
+              <div>
+                <h3>Backend / API Project</h3>
+                <p>A strong slot for your best FastAPI, Rails, or backend-focused project.</p>
+              </div>
+              <div class="placeholder">Add project name, stack, what problem it solves, and one measurable result.</div>
+            </article>
+            <article class="card project-box soft">
+              <div>
+                <h3>Frontend / UI Project</h3>
+                <p>A slot for a clean interface, web page, mini app, or portfolio-style frontend project.</p>
+              </div>
+              <div class="placeholder">Add HTML/CSS/JS work, responsive design details, and UI decisions you made.</div>
+            </article>
+            <article class="card project-box">
+              <div>
+                <h3>Cybersecurity / Networking Practice</h3>
+                <p>A slot for your strongest security-related lab, workflow, or practical exploration.</p>
+              </div>
+              <div class="placeholder">Add tools used, target scenario, what you learned, and how you documented it.</div>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section class="section" id="profiles">
-        <h2 class="section-title">Important Profile Links</h2>
-        <div class="link-grid">
-          <a class="profile-link" href="https://www.hackthebox.com/" target="_blank" rel="noreferrer noopener">
-            <strong>Hack The Box</strong><br />
-            <small>Update with your profile URL</small>
-          </a>
-          <a class="profile-link" href="https://tryhackme.com/" target="_blank" rel="noreferrer noopener">
-            <strong>TryHackMe</strong><br />
-            <small>Update with your profile URL</small>
-          </a>
-          <a class="profile-link" href="https://codeforces.com/" target="_blank" rel="noreferrer noopener">
-            <strong>Codeforces</strong><br />
-            <small>Update with your profile URL</small>
-          </a>
-          <a class="profile-link" href="https://www.hackerrank.com/" target="_blank" rel="noreferrer noopener">
-            <strong>HackerRank</strong><br />
-            <small>Update with your profile URL</small>
-          </a>
-          <a class="profile-link" href="https://github.com/" target="_blank" rel="noreferrer noopener">
-            <strong>GitHub</strong><br />
-            <small>Update with your profile URL</small>
-          </a>
-          <a class="profile-link" href="https://www.linkedin.com/" target="_blank" rel="noreferrer noopener">
-            <strong>LinkedIn</strong><br />
-            <small>Update with your profile URL</small>
-          </a>
+      <section class="section" id="contact">
+        <div class="container">
+          <div class="section-head">
+            <h2>Contact and Profiles</h2>
+            <p>Public links and contact points for collaboration, hiring, and technical discussion.</p>
+          </div>
+          <div class="grid three">
+            <article class="card">
+              <h3>GitHub</h3>
+              <p><a href="https://github.com/decoder76" target="_blank" rel="noreferrer">github.com/decoder76</a></p>
+            </article>
+            <article class="card">
+              <h3>LinkedIn</h3>
+              <p><a href="https://www.linkedin.com/in/lokesh-jaiswal/" target="_blank" rel="noreferrer">linkedin.com/in/lokesh-jaiswal</a></p>
+            </article>
+            <article class="card">
+              <h3>Email</h3>
+              <p><a href="mailto:lokeshjaiswal.dev@proton.me">lokeshjaiswal.dev@proton.me</a></p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="usage">
+        <div class="container">
+          <div class="section-head">
+            <h2>Usage Rights</h2>
+            <p class="usage-note">
+              © 2026 Lokesh Jaiswal. Original text, layout, code, and portfolio presentation are protected.
+              Short quotations with attribution are fine. Full-page cloning is not.
+              <a href="/rights/">Read usage rights</a>.
+            </p>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">
       <div class="container">
-        <p>© <span id="year"></span> Lokesh Jaiswal • Built for GitHub Pages.</p>
+        <div class="footer-shell">
+          <p>© 2026 Lokesh Jaiswal. All rights reserved.</p>
+          <p>Built as a simple, clean personal portfolio focused on software development, backend systems, frontend presentation, and cybersecurity basics.</p>
+        </div>
       </div>
     </footer>
 
     <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
+      (function () {
+        var key = "lokesh-portfolio-visit";
+        var ticker = document.getElementById("first-visit-ticker");
+        if (!ticker) return;
+        if (!localStorage.getItem(key)) {
+          ticker.classList.add("visible");
+          localStorage.setItem(key, "seen");
+          setTimeout(function () {
+            ticker.classList.remove("visible");
+          }, 9000);
+        }
+      })();
     </script>
   </body>
 </html>

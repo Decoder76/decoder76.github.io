@@ -1,29 +1,22 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
-date:   2025-06-18 20:08:38 +0530
-categories: jekyll update
+title: "Why cybersecurity belongs in every modern software role"
+date: 2025-06-18 20:08:38 +0530
+categories: cybersecurity engineering
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
-Jekyll requires blog post files to be named according to the following format:
+Cybersecurity is no longer a separate checkpoint at the end of delivery. It is part of how software should be designed from the beginning.
 
-`YEAR-MONTH-DAY-title.MARKUP`
+For backend systems, that means understanding trust boundaries, validating inputs, observing sensitive flows, and making failures visible. For machine learning systems, it also means thinking about data integrity, model misuse, weak assumptions, and the operational cost of silent drift.
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+The practical goal is simple: build systems that keep their shape under stress.
 
-Jekyll also offers powerful support for code snippets:
+That usually comes from a few habits:
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+- design for least surprise
+- log what matters
+- test the paths that break trust
+- prefer explainable behavior over clever but opaque systems
+- treat deployment quality and security quality as connected
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+This portfolio is moving in that direction on purpose. The work here reflects an interest in secure AI systems, defensive engineering, and delivery practices that hold up in real environments.

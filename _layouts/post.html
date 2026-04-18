@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <meta name="description" content="{{ site.description }}" />
+    <style>
+      :root {
+        --bg: #07110f;
+        --panel: rgba(8, 24, 20, 0.92);
+        --text: #ebfff8;
+        --muted: #a4d6c8;
+        --line: rgba(109, 255, 208, 0.18);
+        --signal: #7fffd4;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--text);
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        line-height: 1.75;
+        background:
+          radial-gradient(circle at top left, rgba(74, 227, 181, 0.15), transparent 34%),
+          linear-gradient(135deg, #020807 0%, #07110f 52%, #03110d 100%);
+      }
+
+      a {
+        color: var(--signal);
+      }
+
+      .shell {
+        width: min(860px, 92%);
+        margin: 0 auto;
+        padding: 2rem 0 4rem;
+      }
+
+      .topbar {
+        padding: 1rem 0 1.4rem;
+      }
+
+      .topbar a {
+        text-decoration: none;
+      }
+
+      .panel {
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        background: var(--panel);
+        padding: 1.4rem;
+      }
+
+      h1 {
+        margin: 0 0 0.5rem;
+        font-size: clamp(2rem, 5vw, 3rem);
+        line-height: 1.1;
+      }
+
+      .meta {
+        margin-bottom: 1.2rem;
+        color: var(--signal);
+        font-size: 0.92rem;
+      }
+
+      p, li {
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <div class="topbar"><a href="/">← Back to home</a></div>
+      <article class="panel">
+        <h1>{{ page.title }}</h1>
+        <div class="meta">{{ page.date | date: "%B %-d, %Y" }}</div>
+        {{ content }}
+      </article>
+    </main>
+  </body>
+</html>
