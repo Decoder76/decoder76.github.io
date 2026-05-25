@@ -1,0 +1,16 @@
+- title: Shiksha Sutram LMS AI Core
+  slug: shiksha-sutram-lms-ai-core
+  summary: Personalized education platform with ML backend architecture and recommender APIs.
+  stack: [Python, FastAPI, TensorFlow]
+- title: NLP RNN/LSTM Project
+  slug: nlp-rnn-lstm-project
+  summary: Text classification and next-word prediction using TensorFlow and Keras.
+  stack: [TensorFlow, Keras, NLP]
+- title: FastAPI Prediction API
+  slug: fastapi-prediction-api
+  summary: Reusable inference endpoint with confidence scoring and clean service boundaries.
+  stack: [FastAPI, Pydantic, Python]
+- title: Telegram AI Bot
+  slug: telegram-ai-bot
+  summary: Automation-focused Telegram assistant with Flask backend and ML integrations.
+  stack: [Flask, Python, Automation]
