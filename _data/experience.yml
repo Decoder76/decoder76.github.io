@@ -1,0 +1,22 @@
+- role: Machine Learning Engineer
+  company: Sutram Solutions
+  points:
+    - Built RNN/LSTM recommendation systems for LMS personalization.
+    - Integrated ML inference services with FastAPI.
+    - Developed maintainable TensorFlow training and evaluation pipelines.
+- role: Associate Software Developer
+  company: Octascale Technologies
+  points:
+    - Built and maintained Rails dashboards.
+    - Optimized APIs and improved response performance.
+    - Automated testing workflows in Agile delivery cycles.
+- role: Tracking Team Associate
+  company: SDC Logistics
+  points:
+    - Managed operational monitoring and logistics tracking.
+    - Improved reporting quality and consistency.
+- role: Project Coordinator
+  company: UP-PDS
+  points:
+    - Managed system operations and data records.
+    - Supported audit reporting and user support operations.
