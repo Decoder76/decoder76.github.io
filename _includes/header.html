@@ -1,0 +1,8 @@
+<header class="border-b border-slate-800 bg-slate-950/90 sticky top-0 z-20">
+  <nav class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap gap-4 justify-between items-center">
+    <a href="/" class="brand text-xl font-bold text-sky-400">Lokesh AI Portfolio</a>
+    <div class="text-sm flex flex-wrap gap-4 text-slate-300">
+      {% for item in site.data.navigation %}<a href="{{ item.url }}" class="hover:text-sky-400">{{ item.label }}</a>{% endfor %}
+    </div>
+  </nav>
+</header>
