@@ -1,0 +1,8 @@
+{
+  "about": "Lokesh Kumar Jayswal is an AI Engineer and Backend Developer focused on modular AI systems.",
+  "skills": ["FastAPI", "TensorFlow", "Python", "RNN/LSTM", "REST APIs"],
+  "experience": ["ML Engineer at Sutram Solutions", "Associate Software Developer at Octascale Technologies"],
+  "projects": ["Shiksha Sutram LMS AI Core", "NLP RNN/LSTM Project", "FastAPI Prediction API", "Telegram AI Bot"],
+  "resume_highlights": ["Operations to AI Engineering transition", "Production-oriented backend architecture"],
+  "contact": {"email": "lokeshjaiswal.dev@proton.me", "linkedin": "https://linkedin.com/in/lokesh-jaiswal"}
+}
