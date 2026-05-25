@@ -1,6 +1,6 @@
-title: "Lokesh Jaiswal"
+title: "Lokesh Kumar Jayswal"
 email: lokeshjaiswal.dev@proton.me
-description: "Cybersecurity-focused engineer building secure AI workflows, resilient backend systems, and threat-aware software."
+description: "AI Engineer & Backend Developer building modular AI systems and production-oriented backend architectures."
 baseurl: ""
 url: "https://decoder76.github.io"
 github_username: decoder76
@@ -8,3 +8,15 @@ linkedin_username: lokesh-jaiswal
 
 plugins:
   - jekyll-feed
+  - jekyll-sitemap
+
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
