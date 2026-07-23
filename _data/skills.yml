@@ -1,0 +1,5 @@
+ai_ml: [TensorFlow, Keras, NLP, RNN/LSTM, Scikit-learn]
+backend: [FastAPI, Flask, REST APIs, Pydantic]
+programming: [Python, Ruby, SQL, JavaScript]
+databases: [PostgreSQL, MongoDB, MySQL]
+systems: [Linux, Docker, GitHub Actions, AWS EventBridge]

@@ -1,0 +1,20 @@
+- label: Home
+  url: /
+- label: About
+  url: /pages/about/
+- label: Experience
+  url: /pages/experience/
+- label: Projects
+  url: /pages/projects/
+- label: Skills
+  url: /pages/skills/
+- label: Blog
+  url: /pages/blog/
+- label: Certifications
+  url: /pages/certifications/
+- label: Resume
+  url: /pages/resume/
+- label: Contact
+  url: /pages/contact/
+- label: AI Assistant
+  url: /pages/ai-assistant/
