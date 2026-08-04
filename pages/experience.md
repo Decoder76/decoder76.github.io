@@ -8,4 +8,5 @@ permalink: /pages/experience/
 ### {{ item.role }} — {{ item.company }}
 {% for point in item.points %}- {{ point }}
 {% endfor %}
+
 {% endfor %}
