@@ -1,3 +1,11 @@
 <footer class="border-t border-slate-800 mt-16">
-  <div class="max-w-6xl mx-auto px-4 py-8 text-slate-400 text-sm">© 2026 Lokesh Kumar Jayswal · Built with Jekyll, TailwindCSS, Alpine.js.</div>
+  <div class="max-w-6xl mx-auto px-4 py-8 text-slate-400 text-sm flex flex-col md:flex-row justify-between items-center gap-4">
+    <p class="text-center md:text-left">© {{ "now" | date: "%Y" }} {{ site.author.name | default: "Lokesh Kumar Jayswal" }} · Built with <a href="https://jekyllrb.com" class="text-slate-300 hover:text-sky-400">Jekyll</a>, <a href="https://tailwindcss.com" class="text-slate-300 hover:text-sky-400">TailwindCSS</a>, <a href="https://alpinejs.dev" class="text-slate-300 hover:text-sky-400">Alpine.js</a>.</p>
+
+    <nav aria-label="Footer navigation" class="flex gap-4 flex-wrap justify-center md:justify-end">
+      {% for item in site.data.navigation %}
+        <a href="{{ item.url }}" class="text-slate-400 hover:text-sky-400">{{ item.label }}</a>
+      {% endfor %}
+    </nav>
+  </div>
 </footer>
