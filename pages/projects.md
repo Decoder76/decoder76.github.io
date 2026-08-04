@@ -16,3 +16,4 @@ permalink: /pages/projects/
 {{ project.summary }}
 `{{ project.stack | join: " • " }}`
 {% endfor %}
+{% endfor %}
