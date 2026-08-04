@@ -10,4 +10,9 @@ permalink: /pages/projects/
 
 **Tech Stack:** `{{ project.stack | join: " • " }}`
 
+## Projects
+{% for project in site.data.projects %}
+### [{{ project.title }}](/projects/{{ project.slug }}/)
+{{ project.summary }}
+`{{ project.stack | join: " • " }}`
 {% endfor %}

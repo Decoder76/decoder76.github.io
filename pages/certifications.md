@@ -7,3 +7,4 @@ permalink: /pages/certifications/
 - Machine Learning foundations
 - Backend API engineering
 - Linux and systems operations
+Content coming with latest updates.

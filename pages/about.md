@@ -13,3 +13,5 @@ My journey moved through **operations**, into **software development**, and then
 - ML training/inference pipelines with maintainable structure
 - Lightweight automation systems for business workflows
 - Recruiter/demo-friendly products optimized for low-cost hosting
+## About Me
+I transitioned from operations to software development and then into AI engineering, combining system reliability thinking with applied ML and backend architecture.
