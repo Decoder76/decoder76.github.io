@@ -1,0 +1,40 @@
+colors:
+  primary_amber: "#f59e0b"
+  primary_amber_dark: "#d97706"
+  primary_amber_light: "#fbbf24"
+  
+  bg_dark: "#020617"
+  bg_darker: "#0f172a"
+  slate_950: "#020807"
+  slate_900: "#0f172a"
+  slate_800: "#1e293b"
+  slate_700: "#334155"
+  slate_600: "#475569"
+  slate_500: "#64748b"
+  slate_400: "#94a3b8"
+  slate_300: "#cbd5e1"
+  slate_200: "#e2e8f0"
+  slate_100: "#f1f5f9"
+  
+  text_primary: "#f8fafc"
+  text_muted: "#a4d6c8"
+  text_signal: "#7fffd4"
+  
+  border_light: "rgba(255, 255, 255, 0.1)"
+  border_dark: "rgba(109, 255, 208, 0.18)"
+
+typography:
+  font_sans: "'Inter', system-ui, sans-serif"
+  font_brand: "'Space Grotesk', sans-serif"
+  line_height_tight: 1.1
+  line_height_normal: 1.7
+  line_height_relaxed: 1.8
+
+spacing:
+  container_max: "6xl"
+  gutter: "1.5rem"
+
+transitions:
+  duration_fast: "0.3s"
+  duration_normal: "0.6s"
+  easing: "cubic-bezier(0.4, 0, 0.2, 1)"
