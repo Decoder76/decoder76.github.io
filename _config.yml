@@ -5,6 +5,7 @@ baseurl: ""
 url: "https://decoder76.github.io"
 github_username: decoder76
 linkedin_username: lokesh-jaiswal
+repository: "Decoder76/decoder76.github.io"
 
 plugins:
   - jekyll-feed
