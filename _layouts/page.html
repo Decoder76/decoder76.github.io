@@ -92,5 +92,31 @@
         {{ content }}
       </article>
     </main>
+    <!-- Mermaid.js Runtime Engine -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ 
+    startOnLoad: false, 
+    theme: 'dark',
+    securityLevel: 'loose'
+  });
+
+  document.addEventListener("DOMContentLoaded", async function () {
+    // Selects both standard Jekyll/Rouge wrappers and plain pre/code blocks
+    const mermaidElements = document.querySelectorAll(
+      'div.language-mermaid, pre.language-mermaid, pre code.language-mermaid'
+    );
+
+    mermaidElements.forEach((el) => {
+      const rawCode = el.querySelector('code') ? el.querySelector('code').innerText : el.innerText;
+      const container = document.createElement('div');
+      container.className = 'mermaid flex justify-center my-6';
+      container.textContent = rawCode.trim();
+      el.replaceWith(container);
+    });
+
+    await mermaid.run();
+  });
+</script>
   </body>
 </html>
