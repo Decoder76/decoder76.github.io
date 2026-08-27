@@ -1,23 +1,23 @@
 ---
 layout: page
-title: Shiksha Sutram LMS AI Core
-permalink: /projects/shiksha-sutram-lms-ai-core/
-stack: [Python, FastAPI, TensorFlow]
-overview: Personalized education platform with recommendation systems and modular ML backend APIs.
+title: "Shiksha Sutram LMS AI Core"
+subtitle: "Intelligent content recommendation and adaptive learning assessment engine for LMS platforms"
+date: 2026-05-02
+category: "System Architecture & AI"
+tech_stack: ["Python", "FastAPI", "PostgreSQL", "Docker", "LangChain", "Vector DB"]
+github_url: "https://github.com/Decoder76/shiksha-sutram-lms-ai-core"
+live_url: ""
+featured: true
 ---
-## Overview
-Personalized learning platform backend for recommendation and adaptive paths.
 
-## Problem Statement
-Improve learner engagement with relevant recommendations and adaptive content sequencing.
+**System Architecture**
 
-## Architecture Diagram
-Service-oriented structure: Data Pipeline → Model Training → Model Registry → FastAPI Inference API.
-
-## Engineering Decisions
-- Modular API boundaries
-- Reusable inference services
-- Low-cost deployment constraints
-
-## Future Improvements
-- Feature store and model monitoring
+```mermaid
+flowchart TD
+    User([Student / Educator]) --> GW[FastAPI Gateway]
+    GW --> RAG[RAG Engine]
+    VectorDB[(Curriculum Vector DB)] <--> RAG
+    RAG --> LLM[LLM Generator]
+    LLM --> Eval[Mastery Engine]
+    Eval --> DB[(PostgreSQL Store)]
+    Eval --> Out([Adaptive Content / Test])
