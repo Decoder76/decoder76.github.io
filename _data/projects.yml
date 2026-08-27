@@ -1,16 +1,67 @@
-- title: Shiksha Sutram LMS AI Core
-  slug: shiksha-sutram-lms-ai-core
-  summary: Personalized education platform with ML backend architecture and recommender APIs.
-  stack: [Python, FastAPI, TensorFlow]
-- title: NLP RNN/LSTM Project
-  slug: nlp-rnn-lstm-project
-  summary: Text classification and next-word prediction using TensorFlow and Keras.
-  stack: [TensorFlow, Keras, NLP]
-- title: FastAPI Prediction API
-  slug: fastapi-prediction-api
-  summary: Reusable inference endpoint with confidence scoring and clean service boundaries.
-  stack: [FastAPI, Pydantic, Python]
-- title: Telegram AI Bot
-  slug: telegram-ai-bot
-  summary: Automation-focused Telegram assistant with Flask backend and ML integrations.
-  stack: [Flask, Python, Automation]
+- id: "fastapi-prediction-api"
+  title: "Production ML Inference API"
+  category: "Backend & Machine Learning"
+  summary: "Asynchronous, containerized machine learning inference pipeline optimized for low-latency serving and high throughput."
+  tags:
+    - "FastAPI"
+    - "Docker"
+    - "PyTorch"
+    - "Redis"
+  metrics:
+    - label: "p95 Latency"
+      value: "48ms"
+    - label: "Throughput"
+      value: "1.1k RPM"
+  github: "https://github.com/Decoder76/fastapi-prediction-api"
+  detail_page: "/projects/fastapi-prediction-api"
+
+- id: "nlp-rnn-lstm-project"
+  title: "Deep Sequence NLP Classifier"
+  category: "Natural Language Processing"
+  summary: "End-to-end Bi-LSTM neural network architecture engineered for sequence modeling and context-aware text classification."
+  tags:
+    - "PyTorch"
+    - "Bi-LSTM"
+    - "NLP"
+    - "Scikit-Learn"
+  metrics:
+    - label: "Macro F1"
+      value: "91.4%"
+    - label: "Speedup"
+      value: "35%"
+  github: "https://github.com/Decoder76/nlp-rnn-lstm-project"
+  detail_page: "/projects/nlp-rnn-lstm-project"
+
+- id: "shiksha-sutram-lms-ai-core"
+  title: "Shiksha Sutram LMS AI Core"
+  category: "System Architecture & AI"
+  summary: "Intelligent core engine powering semantic curriculum retrieval, adaptive assessments, and student mastery analytics."
+  tags:
+    - "FastAPI"
+    - "PostgreSQL"
+    - "Vector DB"
+    - "Docker"
+  metrics:
+    - label: "Gen Time"
+      value: "<10s"
+    - label: "Accuracy"
+      value: "94%"
+  github: "https://github.com/Decoder76/shiksha-sutram-lms-ai-core"
+  detail_page: "/projects/shiksha-sutram-lms-ai-core"
+
+- id: "telegram-ai-bot"
+  title: "Autonomous Telegram AI Assistant"
+  category: "AI Agents & Automation"
+  summary: "Asynchronous event-driven Telegram bot featuring multi-turn conversation memory, rate limiting, and LLM orchestration."
+  tags:
+    - "Python"
+    - "Asyncio"
+    - "Redis"
+    - "LLM"
+  metrics:
+    - label: "Concurrency"
+      value: "200 Users"
+    - label: "Reliability"
+      value: "100%"
+  github: "https://github.com/Decoder76/telegram-ai-bot"
+  detail_page: "/projects/telegram-ai-bot"
