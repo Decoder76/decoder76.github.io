@@ -5,7 +5,6 @@ permalink: /pages/ai-assistant/
 ---
 
 <div class="max-w-3xl mx-auto my-6">
-  <!-- Chat Container -->
   <div class="bg-slate-900/90 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col h-[650px]">
     
     <!-- Chat Header -->
@@ -14,26 +13,26 @@ permalink: /pages/ai-assistant/
         <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
         <div>
           <h2 class="text-sm font-bold text-white tracking-wide">Lokesh's Knowledge Core</h2>
-          <p class="text-[11px] text-slate-400 font-mono">CLIENT_INFERENCE: ACTIVE</p>
+          <p class="text-[11px] text-slate-400 font-mono">DYNAMIC_COLLECTION_FEED: ACTIVE</p>
         </div>
       </div>
-      <span class="text-xs bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded-full font-mono">v1.0-static</span>
+      <span class="text-xs bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded-full font-mono">Dynamic Jekyll Feed</span>
     </div>
 
-    <!-- Suggested Quick Prompts -->
+    <!-- Quick Prompts -->
     <div class="px-6 py-3 bg-slate-950/40 border-b border-slate-800/60 flex gap-2 overflow-x-auto text-xs scrollbar-none">
-      <button onclick="sendQuickPrompt('What is your core tech stack?')" class="whitespace-nowrap px-3 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors">⚡ Tech Stack</button>
-      <button onclick="sendQuickPrompt('Tell me about the FastAPI Inference API')" class="whitespace-nowrap px-3 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors">🚀 FastAPI Project</button>
-      <button onclick="sendQuickPrompt('What is your background and experience?')" class="whitespace-nowrap px-3 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors">💼 Experience</button>
-      <button onclick="sendQuickPrompt('How can I contact you?')" class="whitespace-nowrap px-3 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors">📫 Contact Info</button>
+      <button onclick="sendQuickPrompt('What projects have you built?')" class="whitespace-nowrap px-3 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors">🚀 All Projects</button>
+      <button onclick="sendQuickPrompt('What is your tech stack?')" class="whitespace-nowrap px-3 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors">⚡ Tech Stack</button>
+      <button onclick="sendQuickPrompt('Tell me about your experience')" class="whitespace-nowrap px-3 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors">💼 Experience</button>
+      <button onclick="sendQuickPrompt('Where are you located and how to contact?')" class="whitespace-nowrap px-3 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors">📫 Contact</button>
     </div>
 
-    <!-- Message History Area -->
+    <!-- Messages Container -->
     <div id="chatMessages" class="flex-1 overflow-y-auto p-6 space-y-4 text-sm">
       <div class="flex items-start gap-3">
         <div class="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xs font-bold flex-shrink-0">AI</div>
         <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl rounded-tl-none px-4 py-3 text-slate-200 leading-relaxed max-w-[85%]">
-          Hello! I am Lokesh's interactive assistant. Ask me anything about his backend projects, AI/ML models, system metrics, or technical background.
+          Hello! I dynamically index all project architectures from <code>_projects/</code>, skills, and experience. Ask me about any specific model, API, or system design.
         </div>
       </div>
     </div>
@@ -44,7 +43,7 @@ permalink: /pages/ai-assistant/
         <input 
           type="text" 
           id="userInput" 
-          placeholder="Ask a question about systems, skills, or projects..." 
+          placeholder="Ask about FastAPI, Bi-LSTM, LMS AI Core, or system metrics..." 
           autocomplete="off"
           class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-colors"
         />
@@ -59,9 +58,48 @@ permalink: /pages/ai-assistant/
   </div>
 </div>
 
-<!-- Embedded Knowledge Base & Client-Side Search Engine -->
-<script id="chatbot-knowledge" type="application/json">
-{{ site.data.chatbot_knowledge | jsonify }}
+<!-- Dynamically compiled knowledge feed built directly from Jekyll collections & data -->
+<script id="dynamic-knowledge" type="application/json">
+[
+  {% for project in site.projects %}
+  {
+    "type": "project",
+    "title": {{ project.title | jsonify }},
+    "url": {{ project.url | relative_url | jsonify }},
+    "keywords": [
+      {{ project.title | downcase | jsonify }},
+      {% if project.stack %}{% for s in project.stack %}{{ s | downcase | jsonify }},{% endfor %}{% endif %}
+      "project", "architecture", "system", "performance"
+    ],
+    "content": {{ project.content | strip_html | normalize_whitespace | truncate: 450 | jsonify }}
+  },
+  {% endfor %}
+
+  {% for skill in site.data.skills %}
+  {
+    "type": "skills",
+    "title": {{ skill.category | jsonify }},
+    "keywords": ["skills", "stack", "tools", "languages", {{ skill.category | downcase | jsonify }}, {% for item in skill.items %}{{ item | downcase | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}],
+    "content": "Core competencies in <strong>{{ skill.category }}</strong> include: {{ skill.items | join: ', ' }}."
+  },
+  {% endfor %}
+
+  {% for exp in site.data.experience %}
+  {
+    "type": "experience",
+    "title": {{ exp.title | jsonify }},
+    "keywords": ["experience", "work", "career", "background", {{ exp.title | downcase | jsonify }}, {{ exp.organization | downcase | jsonify }}],
+    "content": "<strong>{{ exp.title }}</strong> at <strong>{{ exp.organization }}</strong> ({{ exp.period }}): {{ exp.description }} — Technologies: {{ exp.tech | join: ', ' }}."
+  },
+  {% endfor %}
+
+  {
+    "type": "contact",
+    "title": "Contact & Location",
+    "keywords": ["contact", "email", "github", "reach", "hire", "location", "city"],
+    "content": "Lokesh Kumar Jayswal is based in Gorakhpur, UP, India. You can connect on GitHub at <a href='https://github.com/Decoder76' target='_blank' class='text-amber-400 underline font-medium'>github.com/Decoder76</a> or visit the <a href='{{ '/pages/contact/' | relative_url }}' class='text-amber-400 underline font-medium'>Contact page</a>."
+  }
+]
 </script>
 
 <script>
@@ -70,12 +108,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatForm = document.getElementById("chatForm");
   const userInput = document.getElementById("userInput");
 
-  let knowledgeData = [];
+  let dynamicIndex = [];
   try {
-    const rawData = document.getElementById("chatbot-knowledge").textContent;
-    knowledgeData = JSON.parse(rawData) || [];
+    const rawFeed = document.getElementById("dynamic-knowledge").textContent;
+    dynamicIndex = JSON.parse(rawFeed) || [];
   } catch (err) {
-    console.error("Could not parse chatbot knowledge data:", err);
+    console.error("Error reading dynamic Jekyll feed:", err);
   }
 
   function appendMessage(sender, text) {
@@ -102,41 +140,52 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function matchQuery(query) {
-    if (!knowledgeData.length) {
-      return "Knowledge base is currently empty or indexing.";
+    const cleanQuery = query.toLowerCase().trim();
+
+    // Natural greetings
+    const greetings = ["hi", "hello", "hey", "who are you", "what can you do"];
+    if (greetings.some(g => cleanQuery === g || cleanQuery.startsWith(g + " "))) {
+      return "Hello! I dynamically parse Lokesh's project architectures, technical stack, and career background. You can ask about projects like <strong>FastAPI Prediction API</strong>, <strong>Deep Sequence NLP</strong>, or general skills.";
     }
 
-    const tokens = query.toLowerCase().replace(/[^\w\s]/gi, '').split(/\s+/).filter(Boolean);
-    let bestScore = 0;
-    let bestAnswer = null;
+    if (!dynamicIndex.length) {
+      return "Dynamic knowledge feed is building. Please refresh in a moment.";
+    }
 
-    knowledgeData.forEach(item => {
+    const tokens = cleanQuery.replace(/[^\w\s]/gi, '').split(/\s+/).filter(Boolean);
+    let bestScore = 0;
+    let bestMatch = null;
+
+    dynamicIndex.forEach(item => {
       let score = 0;
-      const qText = (item.question || "").toLowerCase();
-      const aText = (item.answer || "").toLowerCase();
-      const keywords = (item.keywords || []).map(k => k.toLowerCase());
+      const title = (item.title || "").toLowerCase();
+      const content = (item.content || "").toLowerCase();
+      const keywords = (item.keywords || []).map(k => String(k).toLowerCase());
 
       tokens.forEach(token => {
-        if (keywords.includes(token)) score += 4;
-        if (qText.includes(token)) score += 3;
-        if (aText.includes(token)) score += 1;
+        if (title.includes(token)) score += 6;
+        if (keywords.some(k => k.includes(token))) score += 4;
+        if (content.includes(token)) score += 2;
       });
 
       if (score > bestScore) {
         bestScore = score;
-        bestAnswer = item.answer;
+        bestMatch = item;
       }
     });
 
-    if (bestScore > 0 && bestAnswer) {
-      return bestAnswer;
+    if (bestScore > 0 && bestMatch) {
+      if (bestMatch.type === "project") {
+        return `<strong>${bestMatch.title}</strong><br><br>${bestMatch.content}<br><br><a href="${bestMatch.url}" class="text-amber-400 underline font-medium">Examine Architecture Case Study &rarr;</a>`;
+      }
+      return bestMatch.content;
     }
 
-    return "I don't have exact metrics on that query yet. Feel free to explore my <a href='/pages/projects/' class='text-amber-400 underline'>Projects page</a> or inspect my <a href='/pages/resume/' class='text-amber-400 underline'>Resume</a> for technical specifications.";
+    return "I couldn't find an exact match in the current project case studies. Browse the <a href='{{ '/pages/projects/' | relative_url }}' class='text-amber-400 underline font-medium'>Projects Showcase</a> or <a href='{{ '/pages/resume/' | relative_url }}' class='text-amber-400 underline font-medium'>Resume</a> for full details.";
   }
 
-  window.sendQuickPrompt = function(promptText) {
-    userInput.value = promptText;
+  window.sendQuickPrompt = function(text) {
+    userInput.value = text;
     chatForm.dispatchEvent(new Event("submit"));
   };
 
@@ -148,11 +197,10 @@ document.addEventListener("DOMContentLoaded", () => {
     appendMessage("User", query);
     userInput.value = "";
 
-    // Simulate micro-inference delay
     setTimeout(() => {
       const response = matchQuery(query);
       appendMessage("AI", response);
-    }, 250);
+    }, 150);
   });
 });
 </script>
