@@ -18,7 +18,7 @@
 <!-- Floating Chat Popup Modal -->
 <div 
   id="aiChatModal" 
-  class="fixed bottom-24 right-6 z-50 w-[92vw] sm:w-[420px] h-[550px] bg-slate-900/95 border border-slate-800 backdrop-blur-md rounded-2xl shadow-2xl flex flex-col overflow-hidden hidden transition-all duration-300 transform origin-bottom-right"
+  class="fixed bottom-24 right-6 z-50 w-[92vw] sm:w-[420px] h-[550px] bg-slate-900/95 border border-slate-800 backdrop-blur-md rounded-2xl shadow-2xl flex flex-col overflow-hidden hidden transition-all duration-300"
 >
   <!-- Header -->
   <div class="px-5 py-3.5 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
@@ -26,7 +26,7 @@
       <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
       <div>
         <h3 class="text-xs font-bold text-white tracking-wide uppercase">Lokesh's Assistant</h3>
-        <p class="text-[10px] text-slate-400 font-mono">Dynamic Collections Core</p>
+        <p class="text-[10px] text-slate-400 font-mono">Dynamic Feed: ONLINE</p>
       </div>
     </div>
     <button onclick="toggleChatWidget()" class="text-slate-400 hover:text-white text-xs p-1">✕</button>
@@ -69,52 +69,63 @@
   </div>
 </div>
 
-<!-- Dynamic Knowledge Feed -->
-<script id="widget-knowledge-feed" type="application/json">
-[
+<script>
+// Directly compiled JavaScript Array (tolerant to commas and special characters)
+const widgetKnowledge = [
   {% for project in site.projects %}
   {
-    "type": "project",
-    "title": {{ project.title | jsonify }},
-    "url": {{ project.url | relative_url | jsonify }},
-    "keywords": [
-      {{ project.title | downcase | jsonify }},
+    type: "project",
+    title: {{ project.title | default: "Project" | jsonify }},
+    url: {{ project.url | relative_url | jsonify }},
+    keywords: [
+      {{ project.title | default: "" | downcase | jsonify }},
       {% if project.stack %}{% for s in project.stack %}{{ s | downcase | jsonify }},{% endfor %}{% endif %}
-      "project", "architecture", "api", "model"
+      {% if project.tags %}{% for t in project.tags %}{{ t | downcase | jsonify }},{% endfor %}{% endif %}
+      "project", "architecture", "fastapi", "api", "system", "model"
     ],
-    "content": {{ project.content | strip_html | normalize_whitespace | truncate: 350 | jsonify }}
+    content: {{ project.content | strip_html | strip_newlines | truncate: 320 | jsonify }}
+  },
+  {% endfor %}
+
+  {% for data_proj in site.data.projects %}
+  {
+    type: "project",
+    title: {{ data_proj.title | jsonify }},
+    url: {{ data_proj.detail_page | relative_url | jsonify }},
+    keywords: [
+      {{ data_proj.title | downcase | jsonify }},
+      {% if data_proj.tags %}{% for t in data_proj.tags %}{{ t | downcase | jsonify }},{% endfor %}{% endif %}
+      "project", "architecture", "fastapi", "api", "system"
+    ],
+    content: {{ data_proj.summary | strip_html | strip_newlines | jsonify }}
   },
   {% endfor %}
 
   {% for skill in site.data.skills %}
   {
-    "type": "skills",
-    "title": {{ skill.category | jsonify }},
-    "keywords": ["skills", "stack", "tools", {{ skill.category | downcase | jsonify }}, {% for item in skill.items %}{{ item | downcase | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}],
-    "content": "Core competencies in <strong>{{ skill.category }}</strong>: {{ skill.items | join: ', ' }}."
+    type: "skills",
+    title: {{ skill.category | default: "Skills" | jsonify }},
+    keywords: ["skills", "stack", "tools", "languages", {{ skill.category | downcase | jsonify }} {% for item in skill.items %}, {{ item | downcase | jsonify }}{% endfor %}],
+    content: "Core competencies in <strong>{{ skill.category }}</strong>: {{ skill.items | join: ', ' }}."
   },
   {% endfor %}
 
   {% for exp in site.data.experience %}
   {
-    "type": "experience",
-    "title": {{ exp.title | jsonify }},
-    "keywords": ["experience", "work", "career", {{ exp.title | downcase | jsonify }}, {{ exp.organization | downcase | jsonify }}],
-    "content": "<strong>{{ exp.title }}</strong> at <strong>{{ exp.organization }}</strong> ({{ exp.period }}): {{ exp.description }}"
+    type: "experience",
+    title: {{ exp.title | default: "Experience" | jsonify }},
+    keywords: ["experience", "work", "career", "jobs", {{ exp.title | downcase | jsonify }}, {{ exp.organization | downcase | jsonify }}],
+    content: "<strong>{{ exp.title }}</strong> at <strong>{{ exp.organization }}</strong> ({{ exp.period }}): {{ exp.description | strip_html | strip_newlines }}"
   },
   {% endfor %}
 
   {
-    "type": "contact",
-    "title": "Contact",
-    "keywords": ["contact", "email", "github", "reach", "location"],
-    "content": "Lokesh Kumar Jayswal is based in Gorakhpur, UP, India. GitHub: <a href='https://github.com/Decoder76' target='_blank' class='text-amber-400 underline'>github.com/Decoder76</a>."
+    type: "contact",
+    title: "Contact & Location",
+    keywords: ["contact", "email", "github", "reach", "location", "gorakhpur", "hire"],
+    content: "Lokesh Kumar Jayswal is based in Gorakhpur, UP, India. GitHub: <a href='https://github.com/Decoder76' target='_blank' class='text-amber-400 underline'>github.com/Decoder76</a> or visit the <a href='{{ '/pages/contact/' | relative_url }}' class='text-amber-400 underline'>Contact page</a>."
   }
-]
-</script>
-
-<script>
-let widgetKnowledge = [];
+];
 
 function toggleChatWidget() {
   const modal = document.getElementById("aiChatModal");
@@ -131,13 +142,6 @@ function toggleChatWidget() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  try {
-    const rawFeed = document.getElementById("widget-knowledge-feed").textContent;
-    widgetKnowledge = JSON.parse(rawFeed) || [];
-  } catch (err) {
-    console.error("Widget feed error:", err);
-  }
-
   const widgetMessages = document.getElementById("widgetMessages");
   const widgetChatForm = document.getElementById("widgetChatForm");
   const widgetInput = document.getElementById("widgetInput");
@@ -167,12 +171,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function queryWidgetEngine(query) {
     const clean = query.toLowerCase().trim();
-    const greetings = ["hi", "hello", "hey", "who are you"];
+    const greetings = ["hi", "hello", "hey", "who are you", "what can you do"];
     if (greetings.some(g => clean === g || clean.startsWith(g + " "))) {
-      return "Hello! I am indexed directly from Lokesh's project architectures and technical case studies. Ask about any backend system or machine learning model.";
+      return "Hello! I am indexed directly from Lokesh's project architectures, API pipelines, and technical background. Ask me about <strong>FastAPI</strong>, <strong>Bi-LSTM Sequence Models</strong>, or <strong>System Metrics</strong>.";
     }
 
-    if (!widgetKnowledge.length) return "Assistant indexing dynamic feed...";
+    if (!widgetKnowledge || widgetKnowledge.length === 0) {
+      return "Knowledge feed is currently loading. Please try again in a moment.";
+    }
 
     const tokens = clean.replace(/[^\w\s]/gi, '').split(/\s+/).filter(Boolean);
     let topScore = 0;
@@ -198,12 +204,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (topScore > 0 && match) {
       if (match.type === "project") {
-        return `<strong>${match.title}</strong><br>${match.content}<br><a href="${match.url}" class="text-amber-400 underline font-semibold mt-1 inline-block">Examine Architecture &rarr;</a>`;
+        return `<strong>${match.title}</strong><br>${match.content}<br><a href="${match.url}" class="text-amber-400 underline font-semibold mt-1.5 inline-block">Examine Architecture &rarr;</a>`;
       }
       return match.content;
     }
 
-    return "No exact match found in current case studies. You can check the <a href='{{ '/pages/projects/' | relative_url }}' class='text-amber-400 underline'>Projects page</a> or <a href='{{ '/pages/resume/' | relative_url }}' class='text-amber-400 underline'>Resume</a>.";
+    return "No exact match found. You can explore the <a href='{{ '/pages/projects/' | relative_url }}' class='text-amber-400 underline font-medium'>Projects Showcase</a> or <a href='{{ '/pages/resume/' | relative_url }}' class='text-amber-400 underline font-medium'>Resume</a>.";
   }
 
   window.sendQuickWidgetPrompt = function(txt) {
