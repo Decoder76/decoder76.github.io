@@ -1,10 +1,16 @@
+
 ---
-layout: default
-title: Contact
+layout: page
+title: "Contact"
 permalink: /pages/contact/
 ---
-## Contact
-- Email: [lokeshjaiswal.dev@proton.me](mailto:lokeshjaiswal.dev@proton.me)
-- LinkedIn: [lokesh-jaiswal](https://linkedin.com/in/lokesh-jaiswal)
-- GitHub: [decoder76](https://github.com/decoder76)
-Content coming with latest updates.
+
+**Get in Touch** — Let's collaborate on backend infrastructure, machine learning pipelines, or software architecture systems.
+
+---
+
+### Communication Channels
+
+* **GitHub**: [Decoder76](https://github.com/Decoder76)
+* **Location**: Gorakhpur, Uttar Pradesh, India
+* **Professional Inquiries**: Reach out via repository discussions or portfolio channels.
