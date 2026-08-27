@@ -1,12 +1,20 @@
 ---
-layout: default
-title: Experience
-permalink: /pages/experience/
+layout: page
+title: "Experience"
+permalink: /experience/
 ---
-## Experience
-{% for item in site.data.experience %}
-### {{ item.role }} — {{ item.company }}
-{% for point in item.points %}- {{ point }}
-{% endfor %}
 
+**Professional Journey & Technical Milestones** across software development, backend systems, and applied machine learning.
+
+---
+
+### Timeline & Milestones
+
+{% for exp in site.data.experience %}
+#### **{{ exp.title }}** — *{{ exp.organization }}*
+{{ exp.description }}
+
+* **Duration:** {{ exp.period }}
+* **Tech Stack:** `{{ exp.tech | join: " • " }}`
+---
 {% endfor %}
