@@ -68,6 +68,21 @@
             </div>
         </div>
     </footer>
-
+    <script type="module">
+      import mermaid from '[https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs](https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs)';
+      mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    
+      // Transform markdown code blocks with class 'language-mermaid' into renderable mermaid divs
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("pre code.language-mermaid").forEach((el) => {
+          const pre = el.parentElement;
+          const div = document.createElement("div");
+          div.className = "mermaid";
+          div.textContent = el.textContent;
+          pre.replaceWith(div);
+        });
+        mermaid.run();
+      });
+    </script>
 </body>
 </html>
