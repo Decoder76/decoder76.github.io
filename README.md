@@ -54,7 +54,7 @@ The repository includes a dedicated asynchronous backend microservice delivering
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/Decoder76/decoder76.github.io.git](portfolio)
+git clone https://github.com/Decoder76/decoder76.github.io.git
 cd decoder76.github.io
 ```
 
