@@ -1,11 +1,15 @@
 ---
-layout: default
-title: Skills
+layout: page
+title: "Technical Skills"
 permalink: /pages/skills/
 ---
-## Skills
-- **AI/ML:** {{ site.data.skills.ai_ml | join: ", " }}
-- **Backend:** {{ site.data.skills.backend | join: ", " }}
-- **Programming:** {{ site.data.skills.programming | join: ", " }}
-- **Databases:** {{ site.data.skills.databases | join: ", " }}
-- **Systems:** {{ site.data.skills.systems | join: ", " }}
+
+**Comprehensive Technology Stack** categorized by engineering domain and system architecture depth.
+
+---
+
+### Skill Matrix
+
+{% for skill_group in site.data.skills %}
+* **{{ skill_group.category }}:** `{{ skill_group.items | join: " • " }}`
+{% endfor %}
