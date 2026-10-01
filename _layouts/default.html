@@ -3,74 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-    
-    <!-- External Assets -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta name="description" content="Lokesh Kumar Jayswal — Ruby on Rails developer and AI/ML engineer building practical web applications, automation and intelligent systems.">
+    <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        :root { --primary-amber: #f59e0b; }
-        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; }
-        .brand-font { font-family: 'Space Grotesk', sans-serif; }
-        .hero-gradient { background: radial-gradient(circle at top right, #1e293b, #020617); }
-        .glass-panel { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .nav-link { position: relative; transition: color 0.3s; color: #94a3b8; font-weight: 500; }
-        .nav-link:hover { color: var(--primary-amber); }
-        .chart-container { position: relative; width: 100%; max-width: 450px; margin: auto; height: 320px; }
-        
-        /* Markdown Content Styling */
-        .prose h1, .prose h2, .prose h3 { font-family: 'Space Grotesk', sans-serif; color: #f8fafc; margin-top: 2rem; margin-bottom: 1rem; font-weight: 700; }
-        .prose h1 { font-size: 2.25rem; }
-        .prose h2 { font-size: 1.5rem; border-bottom: 1px solid #1e293b; padding-bottom: 0.5rem; }
-        .prose p { margin-bottom: 1.25rem; line-height: 1.8; color: #cbd5e1; }
-        .prose ul { list-style-type: disc; padding-left: 1.5rem; color: #cbd5e1; margin-bottom: 1.25rem; }
-        .prose li { margin-bottom: 0.5rem; }
+        :root {
+            --paper: #f5f3ee;
+            --ink: #11110f;
+            --muted: #66645d;
+            --line: #d8d5cc;
+            --dark: #171714;
+            --accent: #c95b2e;
+        }
+        * { box-sizing: border-box; }
+        html { background: var(--paper); }
+        body { margin: 0; font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); }
+        .display { font-family: 'Playfair Display', Georgia, serif; }
+        .mono { font-family: 'DM Mono', monospace; }
+        .rule { border-color: var(--line); }
+        .editorial-link { transition: opacity .2s ease, transform .2s ease; }
+        .editorial-link:hover { opacity: .6; }
+        .project-row { transition: padding .25s ease, background .25s ease; }
+        .project-row:hover { padding-left: 1rem; padding-right: 1rem; background: #ebe8e0; }
+        .outline-button { border: 1px solid var(--ink); transition: all .2s ease; }
+        .outline-button:hover { background: var(--ink); color: var(--paper); }
+        .solid-button { background: var(--ink); color: var(--paper); transition: all .2s ease; }
+        .solid-button:hover { background: var(--accent); }
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { transition: none !important; }
+        }
+        .prose h1, .prose h2, .prose h3 { font-family: 'Playfair Display', Georgia, serif; }
+        .prose p, .prose li { color: #4f4d47; line-height: 1.8; }
+        .prose h2 { border-bottom: 1px solid var(--line); padding-bottom: .6rem; }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="{{ site.baseurl }}/" class="brand-font text-xl font-bold tracking-tight text-amber-500">LOKESH.AI</a>
-            <div class="hidden md:flex space-x-8 text-sm">
-                <a href="{{ site.baseurl }}/" class="nav-link">Dashboard</a>
-                <a href="{{ site.baseurl }}/pages/projects/" class="nav-link">Projects</a>
-                <a href="{{ site.baseurl }}/pages/about/" class="nav-link">About</a>
-                <a href="{{ site.baseurl }}/pages/resume/" class="nav-link">Resume</a>
-            </div>
-            <a href="mailto:{{ site.email }}" class="bg-amber-500 text-slate-950 px-5 py-2 rounded-lg text-sm font-bold hover:bg-amber-400 transition-all">Hire Me</a>
+<header class="border-b rule bg-[#f5f3ee]">
+    <nav class="max-w-7xl mx-auto px-5 sm:px-8 py-5 flex items-center justify-between" aria-label="Primary navigation">
+        <a href="{{ site.baseurl }}/" class="mono text-sm tracking-[0.16em] font-medium">LOKESH / DEV</a>
+        <div class="hidden md:flex items-center gap-8 text-sm">
+            <a class="editorial-link" href="{{ site.baseurl }}/pages/projects/">Work</a>
+            <a class="editorial-link" href="{{ site.baseurl }}/pages/about/">About</a>
+            <a class="editorial-link" href="{{ site.baseurl }}/pages/experience/">Experience</a>
+            <a class="editorial-link" href="{{ site.baseurl }}/pages/resume/">Resume</a>
         </div>
+        <a href="mailto:{{ site.email }}" class="solid-button px-4 py-2 text-sm font-semibold">Start a project ↗</a>
     </nav>
+</header>
 
-    <!-- Main Content -->
-    <div class="pt-20">
-        {{ content }}
-    </div>
+<main>
+    {{ content }}
+</main>
 
-    <!-- Footer -->
-    <footer class="bg-slate-950 py-16 border-t border-slate-900 mt-20">
-        <div class="max-w-6xl mx-auto px-6 text-center md:text-left md:flex md:justify-between md:items-center">
+<footer class="bg-[#171714] text-[#f5f3ee] mt-24">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14">
+        <div class="grid md:grid-cols-2 gap-12 items-end">
             <div>
-                <h2 class="brand-font text-2xl font-bold text-slate-100 mb-2">Lokesh Kumar Jayswal</h2>
-                <p class="text-slate-500 text-sm">Engineering secure, modular AI and Backend systems.</p>
+                <p class="mono text-xs tracking-[0.16em] text-stone-400 mb-5">LET'S BUILD SOMETHING USEFUL</p>
+                <h2 class="display text-4xl md:text-5xl leading-tight">Have a business problem that needs software?</h2>
+                <a href="mailto:{{ site.email }}" class="inline-block mt-7 border border-stone-500 px-5 py-3 text-sm hover:bg-[#f5f3ee] hover:text-[#171714] transition">Get in touch ↗</a>
             </div>
-            <div class="mt-8 md:mt-0">
-                <div class="flex justify-center md:justify-end gap-6 mb-4 text-sm">
-                    <a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="text-slate-400 hover:text-amber-500 transition-colors">LinkedIn</a>
-                    <a href="https://github.com/{{ site.github_username }}" class="text-slate-400 hover:text-slate-100 transition-colors">GitHub</a>
-                </div>
-                <p class="text-slate-600 text-xs">© {{ "now" | date: "%Y" }} • Built with Engineering Discipline.</p>
+            <div class="md:text-right text-sm text-stone-400 space-y-3">
+                <p>Ruby on Rails · AI/ML · Web Applications</p>
+                <p class="space-x-5">
+                    <a class="hover:text-white" href="https://linkedin.com/in/{{ site.linkedin_username }}">LinkedIn</a>
+                    <a class="hover:text-white" href="https://github.com/{{ site.github_username }}">GitHub</a>
+                </p>
+                <p class="text-xs text-stone-600">© {{ "now" | date: "%Y" }} Lokesh Kumar Jayswal</p>
             </div>
         </div>
-    </footer>
-    </script>
-    
-<!-- Bottom of index.html -->
+    </div>
+</footer>
+
 {% include ai-widget.html %}
 </body>
 </html>
