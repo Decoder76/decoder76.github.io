@@ -1,129 +1,118 @@
 ---
 layout: default
-title: Dashboard
+title: Home
 ---
 
-<!-- Hero Section -->
-<header class="py-16 hero-gradient border-b border-slate-800">
-    <div class="max-w-6xl mx-auto px-6">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-                <div class="inline-block px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full text-amber-500 text-xs font-bold uppercase tracking-widest">
-                    AI Engineer & Backend Architect
-                </div>
-                <h1 class="brand-font text-5xl md:text-6xl font-bold leading-tight text-white">
-                    Lokesh Kumar <span class="text-amber-500">Jayswal</span>
-                </h1>
-                <p class="text-slate-400 text-lg leading-relaxed max-w-xl">
-                    I translate complex operational logic into modular AI systems. From high-performance FastAPI backends to personalized RNN-based learning platforms.
-                </p>
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="{{ '/pages/projects/' | relative_url }}" class="bg-amber-500 text-slate-950 px-8 py-3 rounded-lg font-bold hover:bg-amber-400 transition-all shadow-lg shadow-amber-500/20">Explore Projects</a>
-                    <a href="{{ '/pages/resume/' | relative_url }}" class="px-8 py-3 border border-slate-700 rounded-lg font-bold hover:bg-slate-800 transition-all text-slate-300">Technical Resume</a>
-                </div>
-            </div>
-            
-            <!-- Skill Visualization -->
-            <div class="glass-panel p-8 rounded-3xl">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="brand-font font-bold text-slate-100">Engineering Proficiency</h3>
-                    <span class="text-[10px] text-amber-500 font-mono bg-amber-500/5 px-2 py-1 rounded border border-amber-500/20">SYSTEM_METRICS.LOG</span>
-                </div>
-                <div class="chart-container">
-                    <canvas id="skillsRadar"></canvas>
-                </div>
-            </div>
+<section class="border-b rule">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-20 md:py-28">
+    <div class="grid lg:grid-cols-[1.4fr_.6fr] gap-14 lg:gap-24 items-end">
+      <div>
+        <p class="mono text-xs tracking-[0.18em] text-stone-500 mb-7">RUBY ON RAILS · AI/ML · WEB APPLICATIONS</p>
+        <h1 class="display text-5xl sm:text-7xl lg:text-[6.7rem] leading-[.92] tracking-[-0.035em] max-w-5xl">
+          I build software for real business problems.
+        </h1>
+      </div>
+      <div class="pb-1">
+        <p class="text-lg leading-8 text-stone-600">
+          I'm Lokesh Kumar Jayswal, a developer focused on practical web applications, backend systems, AI/ML features and automation.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="mailto:{{ site.email }}" class="solid-button px-5 py-3 text-sm font-semibold">Start a project ↗</a>
+          <a href="{{ '/pages/projects/' | relative_url }}" class="outline-button px-5 py-3 text-sm font-semibold">View work</a>
         </div>
+      </div>
     </div>
-</header>
-
-<!-- Career Insight Section -->
-<section class="py-20 bg-slate-950">
-    <div class="max-w-6xl mx-auto px-6">
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="space-y-4">
-                <div class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-amber-500 font-bold">01</div>
-                <h3 class="brand-font text-xl font-bold text-white">Operational Roots</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">My background in logistics operations ensures I build systems that account for real-world unpredictability and edge cases.</p>
-            </div>
-            <div class="space-y-4">
-                <div class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-amber-500 font-bold">02</div>
-                <h3 class="brand-font text-xl font-bold text-white">Security-First AI</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">I view AI pipelines as critical infrastructure, focusing on model integrity, validation, and secure API boundaries.</p>
-            </div>
-            <div class="space-y-4">
-                <div class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-amber-500 font-bold">03</div>
-                <h3 class="brand-font text-xl font-bold text-white">Modular Architecture</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">I prefer clean service boundaries using FastAPI and Pydantic, enabling fast iteration without breaking core stability.</p>
-            </div>
-        </div>
-    </div>
+  </div>
 </section>
 
-<!-- Featured Projects -->
-<section class="py-20 border-t border-slate-900 bg-slate-950">
-    <div class="max-w-6xl mx-auto px-6">
-        <div class="flex justify-between items-end mb-12">
-            <div>
-                <h2 class="brand-font text-3xl font-bold text-white mb-2">Featured Engineering</h2>
-                <p class="text-slate-400">Selected production-oriented AI and Backend case studies.</p>
-            </div>
-            <a href="{{ '/pages/projects/' | relative_url }}" class="text-amber-500 text-sm font-bold hover:underline">All Work →</a>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-            {% for project in site.data.projects limit:2 %}
-            <div class="glass-panel group p-8 rounded-2xl hover:border-amber-500/50 transition-all flex flex-col justify-between">
-                <div>
-                    <div class="flex justify-between items-start mb-6">
-                        <h3 class="text-xl font-bold text-slate-100">{{ project.title }}</h3>
-                        <div class="flex gap-2">
-                            {% for tech in project.tags limit:2 %}
-                            <span class="text-[10px] px-2 py-1 bg-slate-800 rounded text-amber-500 font-mono border border-slate-700">{{ tech }}</span>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <p class="text-slate-400 text-sm mb-8 leading-relaxed">{{ project.summary }}</p>
-                </div>
-                <a href="{{ project.detail_page | relative_url }}" class="text-slate-200 text-xs font-bold group-hover:text-amber-500 transition-colors flex items-center gap-2">
-                    EXAMINE ARCHITECTURE <span>→</span>
-                </a>
-            </div>
-            {% endfor %}
-        </div>
+<section class="border-b rule">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-20 md:py-24">
+    <div class="flex items-end justify-between gap-6 mb-10">
+      <div>
+        <p class="mono text-xs tracking-[0.16em] text-stone-500 mb-3">01 — SELECTED WORK</p>
+        <h2 class="display text-4xl md:text-5xl">Things I've built.</h2>
+      </div>
+      <a href="{{ '/pages/projects/' | relative_url }}" class="hidden sm:block text-sm editorial-link">View all work →</a>
     </div>
+
+    <div class="border-t rule">
+      {% for project in site.data.projects limit:4 %}
+      <a href="{{ project.detail_page | relative_url }}" class="project-row block border-b rule py-7 md:py-9">
+        <div class="grid md:grid-cols-[80px_1fr_1.3fr_160px] gap-5 md:gap-8 items-start">
+          <span class="mono text-xs text-stone-500">0{{ forloop.index }}</span>
+          <h3 class="display text-2xl md:text-3xl">{{ project.title }}</h3>
+          <p class="text-sm md:text-base text-stone-600 leading-7 max-w-xl">{{ project.summary }}</p>
+          <div class="md:text-right text-xs text-stone-500 mono">
+            {% for tech in project.tags limit:3 %}<span class="block">{{ tech }}</span>{% endfor %}
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const ctx = document.getElementById('skillsRadar').getContext('2d');
-    new Chart(ctx, {
-        type: 'radar',
-        data: {
-            labels: ['FastAPI (Backend)', 'PyTorch / AI', 'Linux Ops', 'NLP Systems', 'DB Arch', 'Security'],
-            datasets: [{
-                data: [95, 88, 82, 85, 78, 80],
-                backgroundColor: 'rgba(245, 158, 11, 0.1)',
-                borderColor: 'rgba(245, 158, 11, 0.7)',
-                borderWidth: 2,
-                pointBackgroundColor: '#f59e0b',
-                pointBorderColor: '#020617',
-                pointHoverRadius: 6
-            }]
-        },
-        options: {
-            maintainAspectRatio: false,
-            scales: {
-                r: {
-                    angleLines: { color: 'rgba(148, 163, 184, 0.1)' },
-                    grid: { color: 'rgba(148, 163, 184, 0.1)' },
-                    pointLabels: { font: { size: 10, weight: '600' }, color: '#94a3b8' },
-                    ticks: { display: false, stepSize: 20 },
-                    suggestedMin: 0, suggestedMax: 100
-                }
-            },
-            plugins: { legend: { display: false } }
-        }
-    });
-});
-</script>
+<section class="bg-[#171714] text-[#f5f3ee] border-b border-[#171714]">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-20 md:py-24">
+    <div class="grid lg:grid-cols-[.7fr_1.3fr] gap-14">
+      <div>
+        <p class="mono text-xs tracking-[0.16em] text-stone-500 mb-3">02 — WHAT I BUILD</p>
+        <h2 class="display text-4xl md:text-5xl">Software with a job to do.</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 border-t border-stone-700">
+        <div class="py-7 sm:pr-8 sm:border-r border-stone-700 border-b sm:border-b-0">
+          <p class="mono text-xs text-stone-500 mb-4">01</p>
+          <h3 class="text-xl font-semibold mb-3">Business web applications</h3>
+          <p class="text-stone-400 text-sm leading-7">Operational dashboards, portals, admin systems and workflow-driven applications.</p>
+        </div>
+        <div class="py-7 sm:pl-8 border-b border-stone-700">
+          <p class="mono text-xs text-stone-500 mb-4">02</p>
+          <h3 class="text-xl font-semibold mb-3">Ruby on Rails systems</h3>
+          <p class="text-stone-400 text-sm leading-7">New products, rebuilds and modernization of existing web applications.</p>
+        </div>
+        <div class="py-7 sm:pr-8 sm:border-r border-stone-700">
+          <p class="mono text-xs text-stone-500 mb-4">03</p>
+          <h3 class="text-xl font-semibold mb-3">AI / ML features</h3>
+          <p class="text-stone-400 text-sm leading-7">Prediction APIs, NLP workflows, intelligent search and practical automation.</p>
+        </div>
+        <div class="py-7 sm:pl-8">
+          <p class="mono text-xs text-stone-500 mb-4">04</p>
+          <h3 class="text-xl font-semibold mb-3">Internal tools & automation</h3>
+          <p class="text-stone-400 text-sm leading-7">Systems that reduce repetitive work and make operational data easier to use.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="border-b rule">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-20 md:py-24">
+    <div class="grid md:grid-cols-[.7fr_1.3fr] gap-12">
+      <div>
+        <p class="mono text-xs tracking-[0.16em] text-stone-500 mb-3">03 — APPROACH</p>
+        <h2 class="display text-4xl md:text-5xl">Simple systems. Clear boundaries.</h2>
+      </div>
+      <div class="space-y-8 text-lg leading-8 text-stone-600">
+        <p>I start with the workflow, not the framework. The goal is software that fits the way people actually work.</p>
+        <p>I favour modular architecture, explicit interfaces, maintainable code and sensible infrastructure over unnecessary complexity.</p>
+        <div class="grid sm:grid-cols-3 gap-5 pt-3 border-t rule">
+          <div><p class="mono text-xs text-stone-500 mb-2">STACK</p><p class="text-sm text-stone-800">Rails · Python · FastAPI · SQL</p></div>
+          <div><p class="mono text-xs text-stone-500 mb-2">AI</p><p class="text-sm text-stone-800">TensorFlow · PyTorch · NLP · RAG</p></div>
+          <div><p class="mono text-xs text-stone-500 mb-2">DELIVERY</p><p class="text-sm text-stone-800">Linux · Docker · Git · APIs</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="border-b rule">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-20 md:py-28">
+    <div class="grid md:grid-cols-[1fr_auto] gap-10 items-end">
+      <div>
+        <p class="mono text-xs tracking-[0.16em] text-stone-500 mb-4">04 — LET'S WORK</p>
+        <h2 class="display text-5xl md:text-7xl leading-[.95] max-w-4xl">Have an idea, an old system, or a workflow worth improving?</h2>
+      </div>
+      <a href="mailto:{{ site.email }}" class="solid-button px-6 py-4 text-sm font-semibold whitespace-nowrap">Talk about the project ↗</a>
+    </div>
+  </div>
+</section>
