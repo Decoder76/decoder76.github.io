@@ -1,122 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ page.title }} | {{ site.title }}</title>
-    <meta name="description" content="{{ site.description }}" />
-    <style>
-      :root {
-        --bg: #07110f;
-        --panel: rgba(8, 24, 20, 0.92);
-        --text: #ebfff8;
-        --muted: #a4d6c8;
-        --line: rgba(109, 255, 208, 0.18);
-        --signal: #7fffd4;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        color: var(--text);
-        font-family: "Space Grotesk", system-ui, sans-serif;
-        line-height: 1.7;
-        background:
-          radial-gradient(circle at top left, rgba(74, 227, 181, 0.15), transparent 34%),
-          linear-gradient(135deg, #020807 0%, #07110f 52%, #03110d 100%);
-      }
-
-      a {
-        color: var(--signal);
-      }
-
-      .shell {
-        width: min(860px, 92%);
-        margin: 0 auto;
-        padding: 2rem 0 4rem;
-      }
-
-      .topbar {
-        padding: 1rem 0 1.4rem;
-      }
-
-      .topbar a {
-        text-decoration: none;
-      }
-
-      .panel {
-        border: 1px solid var(--line);
-        border-radius: 1rem;
-        background: var(--panel);
-        padding: 1.4rem;
-      }
-
-      h1, h2, h3 {
-        line-height: 1.1;
-      }
-
-      h1 {
-        margin-top: 0;
-        font-size: clamp(2rem, 5vw, 3rem);
-      }
-
-      p, li {
-        color: var(--muted);
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 1.5rem 0;
-      }
-
-      th, td {
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        padding: 8px 12px;
-        text-align: left;
-      }
-      
-      th {
-        background-color: rgba(255, 255, 255, 0.05);
-        font-weight: bold;
-      }
-    </style>
-  </head>
-  <body>
-    <main class="shell">
-      <div class="topbar"><a href="/">← Back to home</a></div>
-      <article class="panel">
-        {{ content }}
-      </article>
-    </main>
-    <!-- Mermaid.js Runtime Engine -->
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ page.description | default: site.description | escape }}">
+  <title>{% if page.title %}{{ page.title | escape }} — {% endif %}{{ site.title | escape }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{--paper:#f5f3ee;--ink:#11110f;--muted:#66645d;--line:#d8d5cc;--dark:#171714;--accent:#c95b2e}
+    *{box-sizing:border-box}
+    html{background:var(--paper);scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif}
+    .display{font-family:'Playfair Display',Georgia,serif}
+    .mono{font-family:'DM Mono',monospace}
+    .rule{border-color:var(--line)}
+    .editorial-link{transition:opacity .2s ease}
+    .editorial-link:hover{opacity:.65}
+    .solid-button{background:var(--ink);color:var(--paper);transition:background .2s ease}
+    .solid-button:hover{background:var(--accent)}
+    :focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+    .prose{max-width:none}
+    .prose h1,.prose h2,.prose h3,.prose h4{font-family:'Playfair Display',Georgia,serif;color:var(--ink);line-height:1.15}
+    .prose h1{font-size:clamp(2.4rem,7vw,4.6rem);letter-spacing:-.035em}
+    .prose h2{font-size:clamp(1.8rem,4vw,2.6rem);border-bottom:1px solid var(--line);padding-bottom:.65rem;margin-top:2.6rem}
+    .prose h3{font-size:1.5rem;margin-top:2rem}
+    .prose p,.prose li{color:#4f4d47;line-height:1.85}
+    .prose a{color:#9e3d1c;text-decoration:underline;text-underline-offset:3px}
+    .prose ul,.prose ol{padding-left:1.5rem}
+    .prose hr{border-color:var(--line);margin:2rem 0}
+    .prose code{font-family:'DM Mono',monospace;font-size:.9em}
+    .prose pre{overflow-x:auto;background:#e9e6de;padding:1rem;border:1px solid var(--line);border-radius:.25rem}
+    .prose blockquote{border-left:3px solid var(--accent);padding-left:1rem;color:var(--muted)}
+    .prose table{width:100%;border-collapse:collapse;display:block;overflow-x:auto}
+    .prose th,.prose td{border:1px solid var(--line);padding:.65rem .8rem;text-align:left}
+    .prose th{background:#ebe8e0}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+  </style>
+</head>
+<body class="antialiased">
+<header class="border-b rule">
+  <nav class="max-w-7xl mx-auto px-5 sm:px-8 py-5 flex flex-wrap items-center justify-between gap-4" aria-label="Primary navigation">
+    <a href="{{ '/' | relative_url }}" class="mono text-sm tracking-[0.16em] font-medium">LOKESH / DEV</a>
+    <div class="hidden md:flex items-center gap-7 text-sm">
+      <a class="editorial-link" href="{{ '/pages/projects/' | relative_url }}">Work</a>
+      <a class="editorial-link" href="{{ '/pages/about/' | relative_url }}">About</a>
+      <a class="editorial-link" href="{{ '/experience/' | relative_url }}">Experience</a>
+      <a class="editorial-link" href="{{ '/pages/resume/' | relative_url }}">Resume</a>
+      <a class="editorial-link" href="{{ '/pages/blog/' | relative_url }}">Notes</a>
+    </div>
+    <a href="mailto:{{ site.email }}" class="solid-button px-4 py-2 text-sm font-semibold">Start a project ↗</a>
+    <details class="relative w-full md:hidden">
+      <summary class="cursor-pointer list-none border-t rule pt-3 text-sm font-semibold">Menu +</summary>
+      <div class="grid grid-cols-2 gap-4 pt-4 text-sm">
+        <a href="{{ '/' | relative_url }}">Home</a><a href="{{ '/pages/projects/' | relative_url }}">Work</a>
+        <a href="{{ '/pages/about/' | relative_url }}">About</a><a href="{{ '/experience/' | relative_url }}">Experience</a>
+        <a href="{{ '/pages/skills/' | relative_url }}">Skills</a><a href="{{ '/pages/blog/' | relative_url }}">Blog</a>
+        <a href="{{ '/pages/certifications/' | relative_url }}">Certifications</a><a href="{{ '/pages/resume/' | relative_url }}">Resume</a>
+        <a href="{{ '/pages/contact/' | relative_url }}">Contact</a><a href="{{ '/pages/ai-assistant/' | relative_url }}">AI Assistant</a>
+      </div>
+    </details>
+  </nav>
+</header>
+<main class="max-w-7xl mx-auto px-5 sm:px-8 py-12 md:py-20">
+  <div class="mb-10 md:mb-14 border-b rule pb-7">
+    <p class="mono text-xs tracking-[0.16em] text-stone-500 mb-4">LOKESH KUMAR JAYSWAL / PORTFOLIO</p>
+    <h1 class="display text-5xl md:text-7xl leading-[.96] tracking-[-0.035em]">{{ page.title | escape }}</h1>
+  </div>
+  <article class="prose max-w-4xl">{{ content }}</article>
+</main>
+<footer class="bg-[#171714] text-[#f5f3ee] mt-12">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-12 grid md:grid-cols-2 gap-8 items-end">
+    <div><p class="mono text-xs tracking-[0.16em] text-stone-400 mb-4">LET'S BUILD SOMETHING USEFUL</p><h2 class="display text-3xl md:text-4xl">Have a business problem that needs software?</h2><a href="mailto:{{ site.email }}" class="inline-block mt-6 border border-stone-500 px-5 py-3 text-sm hover:bg-[#f5f3ee] hover:text-[#171714] transition">Get in touch ↗</a></div>
+    <div class="md:text-right text-sm text-stone-400 space-y-3"><p>Ruby on Rails · AI/ML · Web Applications</p><p class="space-x-5"><a class="hover:text-white" href="https://linkedin.com/in/{{ site.linkedin_username }}">LinkedIn</a><a class="hover:text-white" href="https://github.com/{{ site.github_username }}">GitHub</a></p><p class="text-xs text-stone-600">© {{ "now" | date: "%Y" }} Lokesh Kumar Jayswal</p></div>
+  </div>
+</footer>
+{% include ai-widget.html %}
 <script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({ 
-    startOnLoad: false, 
-    theme: 'dark',
-    securityLevel: 'loose'
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+mermaid.initialize({startOnLoad:false,theme:'neutral',securityLevel:'strict'});
+document.addEventListener('DOMContentLoaded',async()=>{
+  document.querySelectorAll('div.language-mermaid,pre.language-mermaid,pre code.language-mermaid').forEach(el=>{
+    const code=el.querySelector('code')?el.querySelector('code').innerText:el.innerText;
+    const node=document.createElement('div');node.className='mermaid my-6 overflow-x-auto';node.textContent=code.trim();el.replaceWith(node);
   });
-
-  document.addEventListener("DOMContentLoaded", async function () {
-    // Selects both standard Jekyll/Rouge wrappers and plain pre/code blocks
-    const mermaidElements = document.querySelectorAll(
-      'div.language-mermaid, pre.language-mermaid, pre code.language-mermaid'
-    );
-
-    mermaidElements.forEach((el) => {
-      const rawCode = el.querySelector('code') ? el.querySelector('code').innerText : el.innerText;
-      const container = document.createElement('div');
-      container.className = 'mermaid flex justify-center my-6';
-      container.textContent = rawCode.trim();
-      el.replaceWith(container);
-    });
-
-    await mermaid.run();
-  });
+  await mermaid.run();
+});
 </script>
-  </body>
+</body>
 </html>
