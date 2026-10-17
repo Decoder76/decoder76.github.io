@@ -2,19 +2,19 @@
 layout: page
 title: "Experience"
 permalink: /experience/
+description: "Professional experience across machine learning, Ruby on Rails development, and operational systems."
 ---
 
-**Professional Journey & Technical Milestones** across software development, backend systems, and applied machine learning.
+A career spanning applied machine learning, backend software development, and the operational workflows that software needs to support.
 
 ---
-
-### Timeline & Milestones
 
 {% for exp in site.data.experience %}
-#### **{{ exp.title }}** — *{{ exp.organization }}*
-{{ exp.description }}
+## {{ exp.role | escape }} — {{ exp.company | escape }}
 
-* **Duration:** {{ exp.period }}
-* **Tech Stack:** `{{ exp.tech | join: " • " }}`
+{% for point in exp.points %}
+- {{ point | escape }}
+{% endfor %}
+
 ---
 {% endfor %}
