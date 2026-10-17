@@ -49,13 +49,23 @@
 <header class="border-b rule bg-[#f5f3ee]">
     <nav class="max-w-7xl mx-auto px-5 sm:px-8 py-5 flex items-center justify-between" aria-label="Primary navigation">
         <a href="{{ site.baseurl }}/" class="mono text-sm tracking-[0.16em] font-medium">LOKESH / DEV</a>
-        <div class="hidden md:flex items-center gap-8 text-sm">
-            <a class="editorial-link" href="{{ site.baseurl }}/pages/projects/">Work</a>
-            <a class="editorial-link" href="{{ site.baseurl }}/pages/about/">About</a>
-            <a class="editorial-link" href="{{ site.baseurl }}/pages/experience/">Experience</a>
-            <a class="editorial-link" href="{{ site.baseurl }}/pages/resume/">Resume</a>
+        <div class="hidden md:flex items-center gap-7 text-sm">
+            <a class="editorial-link" href="{{ '/pages/projects/' | relative_url }}">Work</a>
+            <a class="editorial-link" href="{{ '/pages/about/' | relative_url }}">About</a>
+            <a class="editorial-link" href="{{ '/experience/' | relative_url }}">Experience</a>
+            <a class="editorial-link" href="{{ '/pages/resume/' | relative_url }}">Resume</a>
         </div>
         <a href="mailto:{{ site.email }}" class="solid-button px-4 py-2 text-sm font-semibold">Start a project ↗</a>
+        <details class="relative w-full md:hidden">
+            <summary class="cursor-pointer list-none border-t rule pt-3 text-sm font-semibold">Menu +</summary>
+            <div class="grid grid-cols-2 gap-4 pt-4 text-sm">
+                <a href="{{ '/' | relative_url }}">Home</a><a href="{{ '/pages/projects/' | relative_url }}">Work</a>
+                <a href="{{ '/pages/about/' | relative_url }}">About</a><a href="{{ '/experience/' | relative_url }}">Experience</a>
+                <a href="{{ '/pages/skills/' | relative_url }}">Skills</a><a href="{{ '/pages/blog/' | relative_url }}">Blog</a>
+                <a href="{{ '/pages/certifications/' | relative_url }}">Certifications</a><a href="{{ '/pages/resume/' | relative_url }}">Resume</a>
+                <a href="{{ '/pages/contact/' | relative_url }}">Contact</a><a href="{{ '/pages/ai-assistant/' | relative_url }}">AI Assistant</a>
+            </div>
+        </details>
     </nav>
 </header>
 
