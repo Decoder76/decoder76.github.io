@@ -106,6 +106,31 @@ title: Home
 </section>
 
 <section class="border-b rule">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-20 md:py-24">
+    <div class="grid lg:grid-cols-[.7fr_1.3fr] gap-12">
+      <div>
+        <p class="mono text-xs tracking-[0.16em] text-stone-500 mb-3">04 — EXPERIENCE</p>
+        <h2 class="display text-4xl md:text-5xl">A practical mix of software and operations.</h2>
+        <a href="{{ '/experience/' | relative_url }}" class="inline-block mt-6 text-sm editorial-link">Full experience →</a>
+      </div>
+      <div class="border-t rule">
+        {% for exp in site.data.experience %}
+        <div class="py-6 border-b rule grid md:grid-cols-[1fr_1.3fr] gap-3 md:gap-8">
+          <div>
+            <h3 class="text-lg font-semibold">{{ exp.role | escape }}</h3>
+            <p class="text-sm text-stone-500 mt-1">{{ exp.company | escape }}</p>
+          </div>
+          <ul class="text-sm text-stone-600 leading-7 list-disc pl-5 space-y-1">
+            {% for point in exp.points limit:3 %}<li>{{ point | escape }}</li>{% endfor %}
+          </ul>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="border-b rule">
   <div class="max-w-7xl mx-auto px-5 sm:px-8 py-20 md:py-28">
     <div class="grid md:grid-cols-[1fr_auto] gap-10 items-end">
       <div>
